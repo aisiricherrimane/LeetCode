@@ -1,15 +1,18 @@
 class Solution:
     def minOperations(self, logs: List[str]) -> int:
-        count = 0
-        for i in logs:
-            if i == "../":
-                if count == 0:
-                    count = 0
-                else:
-                    count -= 1
-            elif i == './':
-                count = count
+        self.depth = 0
+        def helper(i):
+            if i > len(logs) - 1:
+                return 
+            if logs[i] == "../":
+                if self.depth > 0:
+                    self.depth -= 1
+            elif logs[i] == "./":
+                pass
             else:
-                count += 1
-        return count
+                self.depth  += 1
+        
+            helper(i + 1)
+        helper(0)
+        return self.depth
         
