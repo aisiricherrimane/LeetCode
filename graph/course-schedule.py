@@ -1,32 +1,24 @@
 class Solution:
     def canFinish(self, numCourses: int, prerequisites: List[List[int]]) -> bool:
-        preq_map = {i: [] for i in range(numCourses)}
+        adj = {i : [] for i in range(numCourses)}
+        
+        for crs, pre in prerequisites:
+            adj[crs].append(pre)
 
-        # Build the adjacency list for prerequisites
-        for c, p in prerequisites:
-            preq_map[c].append(p)
-
-        visit = set()   # Tracks the nodes currently in the DFS path (cycle detection)
-        visited = set() # Tracks nodes that have been fully processed
-
+        visit = set()
         def dfs(course):
-            if course in visit:  # If the course is already in the current path, cycle detected
+            if course in visit:
                 return False
-            if course in visited: # If the course is fully processed, skip
+            if adj[course] == []:
                 return True
-
             visit.add(course)
-            for p in preq_map[course]:
-                if not dfs(p):
+            for pre in adj[course]:
+                if not dfs(pre):
                     return False
-            
-            visit.remove(course) # Remove from current path since it's fully processed
-            visited.add(course)  # Mark as fully processed
+            adj[course] = []
             return True
-
-        # Perform DFS for each course
+        
         for c in range(numCourses):
             if not dfs(c):
                 return False
-        
         return True
