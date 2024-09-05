@@ -16,6 +16,7 @@ class Solution:
                 if not dfs(pre):
                     return False
             adj[course] = []
+            visit.remove(course)
             return True
         
         for c in range(numCourses):
