@@ -1,6 +1,7 @@
 class Solution:
     def findItinerary(self, tickets: List[List[str]]) -> List[str]:
-        adj = {src : [] for src, dst in tickets}
+        adj = {src: [] for src, dst in tickets}
+        res = []
 
         for src, dst in tickets:
             adj[src].append(dst)
@@ -8,23 +9,41 @@ class Solution:
         for key in adj:
             adj[key].sort()
 
-        res = ['JFK']
-        
-        def dfs(dst):
+        res = ["JFK"]
+
+        def dfs(src):
             if len(res) == len(tickets) + 1:
                 return True
-            if dst not in adj:
+            if src not in adj:
                 return False
-            
-            temp = adj[dst][:]  # Copy current list of destinations
-            for i, place in enumerate(temp):
-                adj[dst].pop(i)  # Remove destination from adjacency list
-                res.append(place)  # Add the destination to the result
-                if dfs(place):  # Recursive DFS call
+
+            temp = adj[src][:]
+            for i, p in enumerate(temp):
+                adj[src].pop(i)
+                res.append(p)
+                if dfs(p):
                     return True
-                adj[dst].insert(i, place)  # Backtrack by reinserting the place
-                res.pop()  # Backtrack by removing the place from result
+                adj[src].insert(i, p)
+                res.pop()
             return False
-            
         dfs("JFK")
         return res
+
+
+
+      
+
+
+
+
+
+
+
+
+
+
+        
+        
+
+
+                
