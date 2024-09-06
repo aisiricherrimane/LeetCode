@@ -16,14 +16,15 @@ class Solution:
             if dst not in adj:
                 return False
             
-            temp = adj[dst][:]
+            temp = adj[dst][:]  # Copy current list of destinations
             for i, place in enumerate(temp):
-                adj[dst].pop(i)
-                res.append(place)
-                if dfs(place):
+                adj[dst].pop(i)  # Remove destination from adjacency list
+                res.append(place)  # Add the destination to the result
+                if dfs(place):  # Recursive DFS call
                     return True
-                adj[dst].insert(i, place)
-                res.pop()
+                adj[dst].insert(i, place)  # Backtrack by reinserting the place
+                res.pop()  # Backtrack by removing the place from result
             return False
+            
         dfs("JFK")
         return res
