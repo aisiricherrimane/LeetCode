@@ -22,7 +22,7 @@ class Solution:
                 res.append(place)
                 if dfs(place):
                     return True
-                adj[src].insert(i, place)
+                adj[dst].insert(i, place)
                 res.pop()
             return False
         dfs("JFK")
