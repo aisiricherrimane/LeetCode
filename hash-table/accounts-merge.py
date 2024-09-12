@@ -1,7 +1,5 @@
 class Solution:
     def accountsMerge(self, accounts: List[List[str]]) -> List[List[str]]:
-        class Solution:
-    def accountsMerge(self, accounts: List[List[str]]) -> List[List[str]]:
         email_to_parent = {}  # Union-Find parent map
         email_to_name = {}    # Maps email to the name (person's name)
         
