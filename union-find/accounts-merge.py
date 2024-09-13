@@ -33,7 +33,7 @@ class Solution:
                 else:
                     email_to_ind[e] = i
         
-        emailGroup = colllections.defaultdict(list)
+        emailGroup = collections.defaultdict(list)
         for e, i in email_to_ind.items():
             leader = uf.find(i)
             emailGroup[leader].append(e)
