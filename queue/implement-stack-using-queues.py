@@ -11,14 +11,13 @@ class MyStack:
             self.push(self.queue.popleft())
         return self.queue.popleft()
 
-        
-
     def top(self) -> int:
         n = len(self.queue)
         return self.queue[n - 1]
+
+
     def empty(self) -> bool:
-        if not self.queue:
-            return False
+        return len(self.queue) == 0
 
         
 
