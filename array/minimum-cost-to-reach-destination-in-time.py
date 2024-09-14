@@ -12,14 +12,14 @@ class Solution:
 
         while minH:
             cost, time, node = heapq.heappop(minH)
-            if node in visit or time > maxTime:
+            if node in visit:
                 continue
             if node == len(passingFees) - 1:
                 res = min(res, cost)
             visit.add(node)
             
             for nei_city, nei_time in adjM[node]:
-                if nei_city is not visit:
+                if nei_city is not visit and time + nei_time <= maxTime:
                     heapq.heappush(minH, [cost + passingFees[nei_city], time + nei_time, nei_city])
         
         return res if res != float('inf') else -1
