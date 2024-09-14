@@ -1,14 +1,29 @@
 class Solution:
     def findCheapestPrice(self, n: int, flights: List[List[int]], src: int, dst: int, k: int) -> int:
-        prices = [float('inf')] * n
-        prices[src] = 0
-        for i in range(k + 1):
-            tmp = prices[:]
-            for s, d, p in flights:
-                if prices[s] == float('inf'):
-                    continue
-                if prices[s] + p < tmp[d]:
-                    tmp[d] = prices[s] + p
-            prices = tmp
-        return -1 if prices[dst] == float("inf") else prices[dst] 
+        adjM = collections.defaultdict(list)
+
+        for st, dt, c in flights:
+            adjM[st].append([dt, c])
+        
+        s = 0
+        visit = set()
+        minH = [[0, 0, src]]
+
+        while minH:
+            cost, stop, place = heapq.heappop(minH)
+
+            if place == dst:
+                return cost
+            if stop > k:
+                continue
+            visit.add(place)
+
+            for neiS, neiC in adjM[place]:
+                if neiS not in visit:
+                    heapq.heappush(minH,[cost + neiC, stop + 1, neiS])
+        return -1
+
+            
+
+        
 
