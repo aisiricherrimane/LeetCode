@@ -19,7 +19,7 @@ class Solution:
             visit.add(node)
             
             for nei_city, nei_time in adjM[node]:
-                if nei_city is not visit:
+                if nei_city not in visit and time + nei_time <= maxTime:
                     heapq.heappush(minH, [cost + passingFees[nei_city], time + nei_time, nei_city])
         
         return res if res != float('inf') else -1
