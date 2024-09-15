@@ -9,7 +9,7 @@ class Solution:
         first = head
         second = head
 
-        while second.next and second.next.next:
+        while second and second.next:
             first = first.next
             second = second.next.next
             if first == second:
