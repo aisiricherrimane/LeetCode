@@ -13,12 +13,12 @@ class Solution:
                 return same(p.left, q.right) and same(p.right, q.left)
             else:
                 return False
-        
+            
         if not root:
             return True
-        p = root.left
-        q = root.right
-        return same(p, q)
-            
+        p = root.right
+        q = root.left
+        return same(p,q)
 
+            
         
