@@ -3,39 +3,37 @@ import collections
 
 class Solution:
     def findCheapestPrice(self, n: int, flights: List[List[int]], src: int, dst: int, k: int) -> int:
-        adjM = collections.defaultdict(list)
-
-        # Build the adjacency list from flights
-        for st, dt, c in flights:
-            adjM[st].append([dt, c])
-
-        # Min-heap where each entry is [cost, stops, node]
-        minH = [[0, 0, src]]
+        adj = collections.defaultdict(list)
         
-        # Dictionary to track the minimum stops required to reach each node
-        best = {}
-
+        # Build the adjacency list
+        for s, d, p in flights:
+            adj[s].append((d, p))
+        
+        # Min heap: (cost, current place, stops)
+        minH = [(0, src, 0)]
+        
+        # Dictionary to track the minimum cost to reach each node with up to a certain number of stops
+        costs = {(src, 0): 0}
+        
         while minH:
-            cost, stop, place = heapq.heappop(minH)
-
-            # If we reached the destination, return the cost
+            cost, place, stops = heapq.heappop(minH)
+            
+            # If destination is reached, return the cost
             if place == dst:
                 return cost
             
-            # If we have exceeded the allowed number of stops, skip this path
-            if stop > k:
+            # If stops exceed k, continue to the next iteration
+            if stops > k:
                 continue
             
-            # If we've visited this node before with fewer or equal stops, skip it
-            if place in best and best[place] <= stop:
-                continue
-            
-            # Update the best known stops to reach this node
-            best[place] = stop
-            
-            # Add neighbors to the heap
-            for nei, price in adjM[place]:
-                heapq.heappush(minH, [cost + price, stop + 1, nei])
-
-        # If no valid path is found, return -1
+            # Explore the neighbors
+            for nei, nei_cost in adj[place]:
+                new_cost = cost + nei_cost
+                
+                # Only add to heap if it's a cheaper path or we've used fewer stops
+                if (nei, stops + 1) not in costs or new_cost < costs[(nei, stops + 1)]:
+                    costs[(nei, stops + 1)] = new_cost
+                    heapq.heappush(minH, (new_cost, nei, stops + 1))
+        
+        # If destination cannot be reached, return -1
         return -1
