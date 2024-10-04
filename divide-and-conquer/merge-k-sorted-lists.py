@@ -5,28 +5,19 @@
 #         self.next = next
 class Solution:
     def mergeKLists(self, lists: List[Optional[ListNode]]) -> Optional[ListNode]:
-        if not lists or len(lists) == 0:
+        if not lists:
             return None
 
         while len(lists) > 1:
-            temp = []
+            merged = []
             for i in range(0, len(lists), 2):
                 l1 = lists[i]
-                l2 = lists[i + 1] if (i + 1) < len(lists) else None
-                temp.append(self.mergeTwoLists(l1, l2))
-            lists = temp
+                l2 = lists[i + 1] if i + 1 < len(lists) else None
+                merged.append(self.mergeTwoLists(l1, l2))
+            lists = merged
         return lists[0]
 
-
-
-
-
-
-
-
-
-
-
+    
     def mergeTwoLists(self, list1: Optional[ListNode], list2: Optional[ListNode]) -> Optional[ListNode]:
         dummy = ListNode()
         curr = dummy
