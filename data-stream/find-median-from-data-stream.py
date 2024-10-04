@@ -11,10 +11,10 @@ class MedianFinder:
         else:
             heapq.heappush(self.small, -1 * num)
         
-        if len(self.small) + 1 > len(self.large):
+        if len(self.small) + 2 > len(self.large):
             val = heapq.heappop(self.small)
             heapq.heappush(self.large, -1 * val)
-        elif len(self.large) + 1 > len(self.small):
+        elif len(self.large) + 2 > len(self.small):
             val = heapq.heappop(self.large)
             heapq.heappush(self.small, -1 * val)
         
@@ -24,8 +24,7 @@ class MedianFinder:
         elif len(self.large) > len(self.small):
             return self.large[0]
         else:
-            mean = ((-1 * self.small[0]) + self.large[0]) / 2
-            return mean
+            return (self.large[0] + -1 * self.small[0]) / 2
 
         
 
