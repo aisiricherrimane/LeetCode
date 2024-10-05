@@ -1,26 +1,27 @@
 class Solution:
     def canFinish(self, numCourses: int, prerequisites: List[List[int]]) -> bool:
-        adj = {i:[] for i in range(numCourses)}
+        adjM = {i:[] for i in range(numCourses)}
 
-        for crs, pre in prerequisites:
-            adj[crs].append(pre)
-
+        for c, p in prerequisites:
+            adjM[c].append(p)
         visit = set()
         def dfs(crs):
             if crs in visit:
                 return False
-            if adj[crs] == []:
+            if adjM[crs] == []:
                 return True
             visit.add(crs)
-            for pre in adj[crs]:
+            for pre in adjM[crs]:
                 if not dfs(pre):
                     return False
+            adjM[crs] = []
             visit.remove(crs)
-            adj[crs] = []
             return True
-        
-        for c in range(numCourses):
-            if not dfs(c):
+            
+        for i in range(numCourses):
+            if not dfs(i):
                 return False
         return True
+
+        
         
