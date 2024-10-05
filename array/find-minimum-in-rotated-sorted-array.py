@@ -6,10 +6,10 @@ class Solution:
         while l <= r:
             if nums[l] < nums[r]:
                 return min(res, nums[l])
-            mid = l + (r - l) // 2
+            mid = (r + l) // 2
             res = min(res, nums[mid])
 
-            if nums[l] < nums[mid]:
+            if nums[l] <= nums[mid]:
                 l = mid + 1
             else:
                 r = mid - 1
