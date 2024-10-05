@@ -6,7 +6,7 @@ class Solution:
         while l <= r:
             if nums[l] < nums[r]:
                 return min(res, nums[l])
-            mid = (l + r) // 2
+            mid = l + (r - l) // 2
             res = min(res, nums[mid])
 
             if nums[l] < nums[mid]:
