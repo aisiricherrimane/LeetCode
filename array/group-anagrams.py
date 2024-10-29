@@ -7,9 +7,6 @@ class Solution:
             for w in word:
                 count[ord(w) - ord('a')] += 1
             temp[tuple(count)].append(word)
-        res = []
-        for a in temp.values():
-            res.append(a)
-        return res
+        return list(temp.values())
 
         
