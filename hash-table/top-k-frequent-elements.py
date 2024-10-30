@@ -1,24 +1,21 @@
 class Solution:
     def topKFrequent(self, nums: List[int], k: int) -> List[int]:
-        temp = {}
-        for n in nums:
-            temp[n] = 1 + temp.get(n, 0)
-
         count = [[] for i in range(len(nums) + 1)]
-        
+        temp = {}
+        for i in nums:
+            temp[i] = 1 + temp.get(i, 0)
         for n, c in temp.items():
             count[c].append(n)
-        
+
         res = []
-        for c in range(len(count) - 1, 0, -1):
-            for n in count[c]:
-                if k != 0:
-                    res.append(n)
+        while k:
+            for i in range(len(count) - 1, -1, -1):
+                for v in count[i]:
+                    res.append(v)
                     k -= 1
-        return res
-
-
-
+                    if k == 0:
+                        return res
+        
 
 
         
