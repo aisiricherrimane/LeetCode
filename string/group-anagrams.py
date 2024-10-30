@@ -8,5 +8,6 @@ class Solution:
                 count[ord(w) - ord('a')] += 1
             temp[tuple(count)].append(word)
         return list(temp.values())
+       
 
         
