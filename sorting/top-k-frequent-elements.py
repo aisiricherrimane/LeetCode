@@ -8,13 +8,15 @@ class Solution:
             count[c].append(n)
 
         res = []
-        while k:
-            for i in range(len(count) - 1, -1, -1):
-                for v in count[i]:
+        
+        for i in range(len(count) - 1, -1, -1):
+            for v in count[i]:
+                if k != 0:
                     res.append(v)
                     k -= 1
-                    if k == 0:
-                        return res
+                if k == 0:
+                    return res
+                    
         
 
 
