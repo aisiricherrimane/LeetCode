@@ -2,35 +2,35 @@ class RandomizedCollection:
 
     def __init__(self):
         self.store = []
-        self.ind = defaultdict(list)
+        self.ind = collections.defaultdict(list)
 
     def insert(self, val: int) -> bool:
         self.ind[val].append(len(self.store))
         self.store.append(val)
+
         return len(self.ind[val]) == 1
 
     def remove(self, val: int) -> bool:
-        # if not present
         if val not in self.ind or not self.ind[val]:
             return False
 
         last_element = self.store[-1]
-        remove_ind = self.ind[val].pop()
-
-        if remove_ind != len(self.store) - 1:
-            self.store[remove_ind] = last_element
+        ind_to_switch = self.ind[val].pop(0)
+        if ind_to_switch != len(self.store) - 1:
+            self.store[ind_to_switch] = last_element
 
             self.ind[last_element].remove(len(self.store) - 1)
-            self.ind[last_element].append(remove_ind)
+            self.ind[last_element].append(ind_to_switch )
         self.store.pop()
 
         if not self.ind[val]:
             del self.ind[val]
-            
+
         return True
 
     def getRandom(self) -> int:
         return choice(self.store)
+        
         
 
 
