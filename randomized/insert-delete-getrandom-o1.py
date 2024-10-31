@@ -7,7 +7,7 @@ class RandomizedSet:
     def insert(self, val: int) -> bool:
         if val not in self.ind:
             self.store.append(val)
-            self.ind[val] = len(self.store) - 1
+            self.ind[val] = (len(self.store) - 1)
             return True
         else:
             return False
@@ -17,11 +17,10 @@ class RandomizedSet:
         last_element = self.store[-1]
         ind = self.ind[val]
         self.store[ind] = last_element
-        self.store.pop()
         self.ind[last_element] = ind
-
-        if not self.ind[val]:
-            del self.ind[val]
+        
+        self.store.pop()
+        del self.ind[val]
         return True
         
     def getRandom(self) -> int:
