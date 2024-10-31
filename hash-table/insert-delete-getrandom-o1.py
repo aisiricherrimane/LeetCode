@@ -3,30 +3,30 @@ class RandomizedSet:
     def __init__(self):
         self.store = []
         self.ind = {}
+        
     def insert(self, val: int) -> bool:
         if val not in self.ind:
             self.store.append(val)
-            self.ind[val] = (len(self.store) - 1)
+            self.ind[val] = len(self.store) - 1
             return True
         else:
             return False
-        
     def remove(self, val: int) -> bool:
-        if val in self.ind:
-            last_element = self.store[-1]
-            idx = self.ind[val]
-            self.store[idx] = last_element
-            self.ind[last_element] = idx
-
-            self.store.pop()
-            del self.ind[val]
-            return True
-
-        else:
+        if val not in self.ind:
             return False
+        last_element = self.store[-1]
+        ind = self.ind[val]
+        self.store[ind] = last_element
+        self.store.pop()
+        self.ind[last_element] = ind
 
+        if not self.ind[val]:
+            del self.ind[val]
+        return True
+        
     def getRandom(self) -> int:
         return choice(self.store)
+       
 
         
 
