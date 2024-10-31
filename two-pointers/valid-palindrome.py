@@ -1,7 +1,7 @@
 class Solution:
     def isPalindrome(self, s: str) -> bool:
         def alphanum(w):
-            if ord('a') <= ord(w) <= ord('z') or ord('A') <= ord(w) <= ord('Z') or ord('1') <= ord(w) <= ord('9'):
+            if ord('a') <= ord(w) <= ord('z') or ord('A') <= ord(w) <= ord('Z') or ord('0') <= ord(w) <= ord('9'):
                 return True
             else:
                 return False
