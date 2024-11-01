@@ -21,13 +21,13 @@ class Solution:
         for r in range(rows):
             if board[r][0] == 'O':
                 dfs(r, 0)
-            elif board[r][cols - 1] == 'O':
+            if board[r][cols - 1] == 'O':
                 dfs(r, cols - 1)
-        # for c
+
         for c in range(cols):
             if board[0][c] == 'O':
                 dfs(0, c)
-            elif board[rows - 1][c] == 'O':
+            if board[rows - 1][c] == 'O':
                 dfs(rows - 1, c)
         
         # compleet traverse
