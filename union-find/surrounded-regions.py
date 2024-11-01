@@ -36,7 +36,7 @@ class Solution:
                     board[r][c] = 'O'
                 elif board[r][c] == 'O':
                     board[r][c] = 'X'
-        return board
+
         # return
 
 
