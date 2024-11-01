@@ -11,11 +11,11 @@ class Solution:
         # dfs
         def dfs(r, c):
             board[r][c] = 'T'
-            directions = [(1, 0), (-1, 0), (0, 1), (0 ,-1)]
+            directions = [(1, 0), (-1, 0), (0, 1), (0, -1)]
             for dr, dc in directions:
-                nR, nC = dr + r, dc + c
-                if nR >= 0 and nR < rows and nC >= 0 and nC < cols and board[nR][nC] == 'O':
-                    dfs(nR, nC)
+                nr, nc = r + dr, c + dc
+                if 0 <= nr < rows and 0 <= nc < cols and board[nr][nc] == 'O':
+                    dfs(nr, nc)
 
         # for r
         for r in range(rows):
