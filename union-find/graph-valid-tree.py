@@ -20,7 +20,10 @@ class Solution:
                     return False
             return True
             
-        return dfs(0, -1) 
+        if dfs(0, -1) and n == len(visit):
+            return True
+        else:
+            return False
 
 
         
