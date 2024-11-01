@@ -1,27 +1,27 @@
 class Solution:
     def canFinish(self, numCourses: int, prerequisites: List[List[int]]) -> bool:
-        adjM = {i:[] for i in range(numCourses)}
+        course_map = {c:[] for c in range(numCourses)}
 
-        for c, p in prerequisites:
-            adjM[c].append(p)
+        for crs, pre in prerequisites:
+            course_map[crs].append(pre)
         visit = set()
+
         def dfs(crs):
             if crs in visit:
                 return False
-            if adjM[crs] == []:
+            if course_map[crs] == []:
                 return True
             visit.add(crs)
-            for pre in adjM[crs]:
+            for pre in course_map[crs]:
                 if not dfs(pre):
                     return False
-            adjM[crs] = []
             visit.remove(crs)
+            course_map[crs] = []
             return True
-            
-        for i in range(numCourses):
-            if not dfs(i):
+        
+        for c in range(numCourses):
+            if not dfs(c):
                 return False
         return True
-
-        
-        
+                
+            
