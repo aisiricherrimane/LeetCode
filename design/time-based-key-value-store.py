@@ -9,7 +9,7 @@ class TimeMap:
     def get(self, key: str, timestamp: int) -> str:
         if key not in self.store:
             return ""
-        for t in range(timestamp, 0, -1):
+        for t in range(timestamp, -1, -1):
             if t in self.store[key]:
                 return str(self.store[key][t])
             else:
