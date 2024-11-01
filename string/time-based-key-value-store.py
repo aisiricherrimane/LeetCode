@@ -1,24 +1,20 @@
+import collections
+
 class TimeMap:
 
     def __init__(self):
         self.store = collections.defaultdict(lambda: defaultdict(str))
 
     def set(self, key: str, value: str, timestamp: int) -> None:
-        self.store[key][timestamp] = value
+        # Only set if the timestamp is not already in the dictionary
+        if self.store[key][timestamp] == "":
+            self.store[key][timestamp] = value
 
     def get(self, key: str, timestamp: int) -> str:
         if key not in self.store:
             return ""
+        # Start from the given timestamp and go backward to find the nearest one
         for t in range(timestamp, -1, -1):
-            if t in self.store[key] and t <= timestamp:
-                return str(self.store[key][t])
-            else:
-                continue
-                
-        
-
-
-# Your TimeMap object will be instantiated and called as such:
-# obj = TimeMap()
-# obj.set(key,value,timestamp)
-# param_2 = obj.get(key,timestamp)
+            if t in self.store[key]:
+                return self.store[key][t]
+        return ""
