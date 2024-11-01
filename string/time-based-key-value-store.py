@@ -10,7 +10,7 @@ class TimeMap:
         if key not in self.store:
             return ""
         for t in range(timestamp, -1, -1):
-            if t in self.store[key]:
+            if t in self.store[key] and t <= timestamp:
                 return str(self.store[key][t])
             else:
                 continue
