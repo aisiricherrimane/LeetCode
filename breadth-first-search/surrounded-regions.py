@@ -27,7 +27,7 @@ class Solution:
         for c in range(cols):
             if board[0][c] == 'O':
                 dfs(0, c)
-            elif board[rows - 1][c] == 'O':
+            if board[rows - 1][c] == 'O':
                 dfs(rows - 1, c)
         
         # compleet traverse
