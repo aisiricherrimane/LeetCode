@@ -5,9 +5,8 @@ class Solution:
         """
         if not board or not board[0]:
             return
-
-        rows = len(board)
-        cols = len(board[0])
+    
+        rows, cols = len(board), len(board[0])
 
         # dfs
         def dfs(r, c):
