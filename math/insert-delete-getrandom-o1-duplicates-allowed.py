@@ -7,35 +7,29 @@ class RandomizedCollection:
     def insert(self, val: int) -> bool:
         self.store.append(val)
         self.ind[val].append(len(self.store) - 1)
-
         return len(self.ind[val]) == 1
-
+        
     def remove(self, val: int) -> bool:
-        # check if not present and return False
         if val not in self.ind:
             return False
-
-        # last_element and get its ind 
         last_element = self.store[-1]
-        last_element_ind = len(self.store) - 1
-        # get vals ind and val
+        last_ind = len(self.store) - 1
         val_ind = self.ind[val].pop(0)
-        # check if v_ind != l_ind
-        if val_ind != last_element_ind:
+
+        if val_ind != last_ind:
             self.store[val_ind] = last_element
+            self.ind[last_element].remove(last_ind)
             self.ind[last_element].append(val_ind)
-            self.ind[last_element].remove(last_element_ind)
         self.store.pop()
 
         if not self.ind[val]:
             del self.ind[val]
 
         return True
+        
 
     def getRandom(self) -> int:
-        return choice(self.store)
-
-        
+        return random.choice(self.store)
         
 
 
