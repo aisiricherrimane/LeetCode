@@ -19,9 +19,9 @@ class RandomizedSet:
         last_element = self.store[-1]
         last_element_ind = len(self.store) - 1
         val_ind = self.ind[val]
-        self.store[val_ind] = last_element
-        self.ind[last_element] = val_ind
-
+        if last_element_ind != val_ind:
+            self.store[val_ind] = last_element
+            self.ind[last_element] = val_ind
         self.store.pop()
         del self.ind[val]
         return True
