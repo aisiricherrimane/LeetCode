@@ -11,15 +11,16 @@ class Solution:
         q = deque()
         q.append(root)
         res = []
-        
         while q:
-            temp = []
+            level = []
             for _ in range(len(q)):
-                curr = q.popleft()
-                if curr.left:
-                    q.append(curr.left)
-                if curr.right:
-                    q.append(curr.right)
-                temp.append(curr.val)
-            res.append(temp)
+                node = q.popleft()
+                if node.left:
+                    q.append(node.left)
+                if node.right:
+                    q.append(node.right)
+                level.append(node.val)
+            res.append(level[:])
         return res
+
+        
