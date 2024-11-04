@@ -11,22 +11,17 @@ class Solution:
 
         minH = [[0, 0]] # dist, 0
         visit = set()
+        res = 0
         
         while len(visit) < n:
-            
             dist, p = heapq.heappop(minH)
 
-            if p == n:
-                return dist
-            fd = dist
+            if p in visit:
+                continue
             visit.add(p)
-
-            for neiP, d in adj[p]:
+            res += dist
+            for neiP, neid in adj[p]:
                 if neiP not in visit:
-                    heapq.heappush(minH, [d + dist, neiP])
-
-        return fd
-
-                
-
-            
+                    heapq.heappush(minH, [neid, neiP])
+        return res
+ 
