@@ -13,8 +13,9 @@ class Solution:
 
             directions = [[0,1],[1,0],[0, -1], [-1, 0]]
             for dr, dc in directions:
-                if 0 <= dr+r < n and 0 <= dc+c < n and (dr + r, dc + c) not in visit:
-                    heapq.heappush(minH, [max(height, grid[dr + r][dc + c]), dr+r, dc+c])
+                nr, nc = dr + r, dc + c
+                if 0 <= nr < n and 0 <= nc < n and (nr, nc) not in visit:
+                    heapq.heappush(minH, [max(height, grid[nr][nc]), nr, nc])
         return -1
         
 
