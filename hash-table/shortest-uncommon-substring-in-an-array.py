@@ -6,7 +6,7 @@ class Solution:
         for index in range(len(arr)):
             sub_set = set()
             for i in range(len(arr[index])):
-                for j in range(i + 1, len(arr[index])):
+                for j in range(i, len(arr[index])):
                     s = arr[index][i:j+1]
                     if s not in sub_set:
                         map_ind_to_sub[index].append(s)
