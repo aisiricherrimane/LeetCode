@@ -13,4 +13,4 @@ class Solution:
                 l = mid + 1
             else:
                 r = mid - 1
-        return low
+        return res
