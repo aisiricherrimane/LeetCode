@@ -4,7 +4,7 @@ class Solution:
         r = len(nums) - 1
         low = nums[l]
         while l <= r:
-            if nums[l] <= nums[r]:
+            if nums[l] < nums[r]:
                 return min(low, nums[l])
             mid = (l + (r - l)) // 2
             low = min(low, nums[mid])
@@ -13,4 +13,4 @@ class Solution:
                 l = mid + 1
             else:
                 r = mid - 1
-                
+        return res
