@@ -1,24 +1,24 @@
 class Solution:
     def networkDelayTime(self, times: List[List[int]], n: int, k: int) -> int:
-        adjM = {i:[] for i in range(1, n+1)}
+        adj = collections.defaultdict(list)
 
-        for s, d, t in times:
-            adjM[s].append([d, t])
-        
+        for s, d, w in times:
+            adj[s].append((d, w))
+
+        minH = [(0, k)]
         visit = set()
-        minH = [[0, k]]
-        visit.add(k)
-
+        t = 0
         while minH:
-            t, p = heapq.heappop(minH)
-            if len(visit) == n:
-                return t
-            for neiD, neiT in adjM[p]:
-                if neiD not in visit:
-                    heapq.heappush(minH, [t + neiT, neiD])
-                    visit.add(neiD)
-        return -1
+            weight, des = heapq.heappop(minH)
+            if des in visit:
+                continue
+            visit.add(des)
+            t = weight
 
+            for neiN, neiW in adj[des]:
+                if neiN not in visit:
+                    heapq.heappush(minH, [weight+neiW, neiN])
+        return t if len(visit) == n else -1
 
 
 
