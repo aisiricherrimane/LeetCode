@@ -1,4 +1,5 @@
-def shortestSubstrings(self, arr: List[str]) -> List[str]:
+class Solution:
+    def shortestSubstrings(self, arr: List[str]) -> List[str]:
         def is_unique(substring, current_index):
         # Check if the substring appears in any other string
             for i, other_string in enumerate(arr):
