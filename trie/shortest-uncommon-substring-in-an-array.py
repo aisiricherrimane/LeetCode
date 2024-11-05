@@ -1,27 +1,32 @@
 class Solution:
     def shortestSubstrings(self, arr: List[str]) -> List[str]:
-        substrings_frequency = defaultdict(int)
-
-        for string in arr:
-            seen_sub_set = set()
-            for length in range(1, len(string) + 1):
-                for i in range(len(string) - length + 1):
-                    substring = string[i:i+length]
-                    if substring not in seen_sub_set:
-                        substrings_frequency[substring] += 1
-                        seen_sub_set.add(substring)
-        result = [''] * len(arr)
-        for index,string in enumerate(arr):
-            found_unique = False
-            for length in range(1, len(string) + 1):
-                for i in range(len(string) - length + 1):
-                    substring = string[i:i+length]
-                    if substrings_frequency[substring] == 1:
-                        result[index] = substring
+        substring_freq = defaultdict(int)
+        
+        # Step 1: Count all possible substrings across all strings up to a reasonable length
+        for word in arr:
+            seen_substrings = set()
+            for length in range(1, len(word) + 1):  # Increase substring length gradually
+                for i in range(len(word) - length + 1):
+                    substring = word[i:i + length]
+                    if substring not in seen_substrings:
+                        substring_freq[substring] += 1
+                        seen_substrings.add(substring)
+        
+        # Step 2: Find the shortest unique substring for each word
+        result = []
+        for word in arr:
+            found = False
+            for length in range(1, len(word) + 1):  # Start with shortest substrings
+                for i in range(len(word) - length + 1):
+                    substring = word[i:i + length]
+                    if substring_freq[substring] == 1:
+                        result.append(substring)
                         found = True
                         break
-                if found_unique:
-                    break
-        return result
+                if found:
+                    break  # Stop once we find the shortest unique substring for this word
         
+        return result
+
+
             
