@@ -14,7 +14,7 @@ class Solution:
         q = deque()
         q.append(beginWord)
         visit = set()
-        visit.add(beginWord)
+        
 
         while q:
             for _ in range(len(q)):
