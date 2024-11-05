@@ -22,5 +22,6 @@ class Solution:
                         break
                 if found_unique:
                     break
-        return res
+        return result
+        
             
