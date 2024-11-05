@@ -1,33 +1,28 @@
-class Solution:
-    def shortestSubstrings(self, arr: List[str]) -> List[str]:
-        def is_unique(substring, index):
-            for i, sub_func_string in enumerate(arr):
-                if i != index and substring in sub_func_string:
-                    return False
-            return True
-        answer = []
-        for index, string in enumerate(arr):
-            found_unique = False
-            min_unique_substring = ""
-
-            for length in range(1, len(string) + 1):
-                unique_substrings = set()
-                for i in range(len(string) - length + 1):
-                    substring = string[i:i+length]
-                    unique_substrings.add(substring)
-                substrings = sorted(unique_substrings)
-                
-                for substring in substrings:
-                    if is_unique(substring, index):
-                        min_unique_substring = substring
-                        found_unique = True
-                        break
-                
-                if found_unique:
-                    break
+def shortestSubstrings(self, arr: List[str]) -> List[str]:
+        substring_freq = defaultdict(int)
         
-
-            answer.append(min_unique_substring if found_unique else '')
-
-        return answer
-  
+        # Step 1: Count all possible substrings across all strings up to a reasonable length
+        for word in arr:
+            seen_substrings = set()
+            for length in range(1, len(word) + 1):  # Increase substring length gradually
+                for i in range(len(word) - length + 1):
+                    substring = word[i:i + length]
+                    if substring not in seen_substrings:
+                        substring_freq[substring] += 1
+                        seen_substrings.add(substring)
+        
+        # Step 2: Find the shortest unique substring for each word
+        result = []
+        for word in arr:
+            found = False
+            for length in range(1, len(word) + 1):  # Start with shortest substrings
+                for i in range(len(word) - length + 1):
+                    substring = word[i:i + length]
+                    if substring_freq[substring] == 1:
+                        result.append(substring)
+                        found = True
+                        break
+                if found:
+                    break  # Stop once we find the shortest unique substring for this word
+        
+        return result
