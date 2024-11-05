@@ -1,3 +1,6 @@
+from collections import defaultdict
+from typing import List
+
 class Solution:
     def shortestSubstrings(self, arr: List[str]) -> List[str]:
         # Step 1: Count the frequency of each substring across all strings
@@ -12,13 +15,15 @@ class Solution:
                         substring_freq[substring] += 1
                         seen_substrings.add(substring)
         
-        # Step 2: Find the shortest unique substring for each word
+        # Step 2: Find the shortest lexicographically smallest unique substring for each word
         result = []
         for word in arr:
             found = False
             for length in range(1, len(word) + 1):  # Start from shortest substrings
-                for i in range(len(word) - length + 1):
-                    substring = word[i:i + length]
+                # Generate all substrings of the current length and sort them lexicographically
+                substrings = sorted(word[i:i + length] for i in range(len(word) - length + 1))
+                
+                for substring in substrings:
                     # Check if this substring is unique (appears only once across all words)
                     if substring_freq[substring] == 1:
                         result.append(substring)
@@ -32,3 +37,4 @@ class Solution:
                 result.append("")
         
         return result
+
