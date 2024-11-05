@@ -3,35 +3,28 @@ from typing import List
 
 class Solution:
     def shortestSubstrings(self, arr: List[str]) -> List[str]:
-        substrings_freq = defaultdict(int)
+        result = []
+        hashmap = defaultdict(list)
+        substring_freq = defaultdict(int)
 
-        for string in arr:
-            substrings_set = set()
-            for l in range(1, len(string) + 1):
-                for i in range(len(string) - l + 1):
-                    substring = string[i:i + l]
-                    if substring not in substrings_set:
-                        substrings_freq[substring] += 1
-                        substrings_set.add(substring)
+        for index in range(len(arr)):
+            substrings = set()
+            for i in range(len(arr[index])):
+                for j in range(i, len(arr[index])):
+                    subs = arr[index][i:j + 1]
+                    
+                    if subs not in substrings:
+                        hashmap[index].append(subs)
+                        substring_freq[subs] += 1
+                        substrings.add(subs)
         
-        res = [''] * len(arr)
-        for index, string in enumerate(arr):
-            found = False
-            for l in range(1, len(string) + 1):
-                substrings = []
-                for i in range(len(string) - l + 1):
-                    substring = string[i:i + l]
-                    substrings.append(substring)
-                substrings = sorted(substrings)
-
-                for s in substrings:
-                    if substrings_freq[s] == 1:
-                        res[index] = s
-                        found = True
-                        break
-                if found:
+        for key in hashmap:
+            result.append('')
+            for s in sorted(hashmap[key], key = lambda x:(len(x), x)):
+                if substring_freq[s] == 1:
+                    result[key] = s
                     break
-        return res
+        return result
 
             
                 
