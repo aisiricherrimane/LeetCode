@@ -9,32 +9,21 @@ class Solution:
         Do not return anything, modify head in-place instead.
         """
         slow = fast = head
-        curr = head
+
         while fast and fast.next:
             slow = slow.next
             fast = fast.next.next
-        
-        curr = slow.next
-        slow.next = prev = None
+        second = slow.next
+        prev = slow.next = None
+        while second:
+            tmp = second.next
+            second.next = prev
+            prev = second
+            second = tmp
 
-        while curr:
-            temp = curr.next
-            curr.next = prev
-            prev = curr
-            curr = temp
-
-        second = prev
-        first = head
+        first, second = head, prev
         while second:
             tmp1, tmp2 = first.next, second.next
             first.next = second
             second.next = tmp1
-            first,second = tmp1, tmp2
-        return head
-
-
-
-        
-        
-
-        
+            first, second = tmp1, tmp2
