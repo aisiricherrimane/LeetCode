@@ -7,8 +7,11 @@ class TimeMap:
     def set(self, key: str, value: str, timestamp: int) -> None:
         self.store[key].append([timestamp, value])
     def get(self, key: str, timestamp: int) -> str:
-        for t, v in self.store[key]:
+        if key not in self.store:
+            return ""
+        for t, v in reversed(self.store[key]):
             if t <= timestamp:
                 return v
+        return ''
         
         
