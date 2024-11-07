@@ -7,7 +7,6 @@ class RandomizedCollection:
     def insert(self, val: int) -> bool:
         self.ind[val].append(len(self.store))
         self.store.append(val)
-        return len(self.ind[val]) == 1
         
     def remove(self, val: int) -> bool:
         if val not in self.ind:
@@ -27,6 +26,7 @@ class RandomizedCollection:
         if not self.ind[val]:
             del self.ind[val]
         return True
+        
     def getRandom(self) -> int:
         return random.choice(self.store)
         
