@@ -10,7 +10,7 @@ class HitCounter:
         while self.store and timestamp - self.store[0] >= 300:
             self.store.popleft()
             self.l -= 1
-        return len(self.store)
+        return self.l 
         
 
 
