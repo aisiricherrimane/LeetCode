@@ -8,13 +8,11 @@ class Solution:
             while i < len(chars) and chars[i] == letter:
                 count += 1
                 i += 1
-
             chars[ans] = letter
             ans += 1
-
             if count > 1:
-                for d in str(count):
-                    chars[ans] = d
+                for digit in str(count):
+                    chars[ans] = digit
                     ans += 1
         return ans
         
