@@ -19,7 +19,7 @@ class RandomizedSet:
         val_ind = self.ind[val]
         
         self.store[val_ind] = last_element
-        self.ind[last_element] = last_element_ind
+        self.ind[last_element] = val_ind
 
         self.store.pop()
         del self.ind[val]
