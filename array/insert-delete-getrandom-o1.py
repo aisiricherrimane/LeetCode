@@ -9,6 +9,7 @@ class RandomizedSet:
             return False
         self.store.append(val)
         self.ind[val] = len(self.store) - 1
+        return True
 
     def remove(self, val: int) -> bool:
         if val not in self.ind:
