@@ -2,9 +2,9 @@ class Solution:
     def containsDuplicate(self, nums: List[int]) -> bool:
         temp = set()
         for n in nums:
-            if n not in temp:
-                temp.add(n)
-            else:
+            if n in temp:
                 return True
+            else:
+                temp.add(n)
         return False
         
