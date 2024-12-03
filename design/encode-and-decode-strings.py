@@ -4,25 +4,34 @@ class Codec:
         """
         res = ''
         for word in strs:
-            res += str(len(word)) + '#' + word
-        return res
+            res += '#' + str(len(word)) + word
+        return res      
         
-
     def decode(self, s: str) -> List[str]:
         """Decodes a single string to a list of strings.
         """
-        res = []
-        i = 0 
+        res = [ ]
+        i = 0
         while i < len(s):
-            j = i
-            while s[j] != '#':
+            while s[i] != '#':
+                i += 1
+            j = i + 1
+            while j < len(s) and s[j].isdigit():
                 j += 1
+            i = i + 1
             length = int(s[i:j])
-            i = j + 1
-            j = i + length 
-            res.append(s[i:j])
-            i = j
+
+            i = j 
+            res.append(s[i:i + length])
+
+            i = i + length
         return res
+
+
+
+
+
+        
 
         
         
