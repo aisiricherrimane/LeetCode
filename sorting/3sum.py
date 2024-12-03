@@ -7,22 +7,18 @@ class Solution:
                 continue
             l = i + 1
             r = len(nums) - 1
-
             while l < r:
-                thr_sum = nums[l] + nums[r] + n
-
-                if thr_sum < 0:
-                    l += 1
-                elif thr_sum > 0:
+                three_sum = n + nums[l] + nums[r]
+                if three_sum > 0:
                     r -= 1
+                elif three_sum < 0:
+                    l += 1
                 else:
-                    res.append([nums[l], nums[r], n])
+                    res.append([n, nums[l], nums[r]])
                     l += 1
                     r -= 1
                     while l < r and nums[l] == nums[l - 1]:
                         l += 1
         return res
 
-
-
-
+        
