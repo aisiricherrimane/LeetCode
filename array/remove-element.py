@@ -1,7 +1,7 @@
 class Solution:
     def removeElement(self, nums: List[int], val: int) -> int:
         if len(nums) == 0:
-            return []
+            return None
             
         l = 0
         r = len(nums) - 1
