@@ -8,7 +8,9 @@ class Solution:
 
         while l <= r:
             if nums[l] == val:
-                nums[l] = nums[r]
+                if nums[r] != val:
+                    nums[l] = nums[r]
+                    l += 1
                 r -= 1
             else:
                 l += 1
