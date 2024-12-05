@@ -1,16 +1,14 @@
 class Solution:
     def checkValid(self, matrix: List[List[int]]) -> bool:
-        check = list(i for i in range(1, len(matrix) + 1))
+        check = set(i for i in range(1, len(matrix) + 1))
         rows = cols = len(matrix)
 
         for r in range(rows):
-            temp = check[:]
+            temp = set()
             for c in range(cols):
-                if matrix[r][c] in temp:
-                    temp.remove(matrix[r][c])
-                    continue
-                else:
-                    return False
+                temp.add(matrix[r][c])
+            if temp != check:
+                return False
         return True
                 
 
