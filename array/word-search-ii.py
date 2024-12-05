@@ -1,31 +1,44 @@
 class Solution:
     def findWords(self, board: List[List[str]], words: List[str]) -> List[str]:
-        res = []
+        def buildtree(words):
+            def trieNode():
+                return defaultdict(trieNode)
+            root = trieNode()
+            for word in words:
+                node = root
+                for letter in word:
+                    node = node[letter]
+                node['#'] = word
+            return root
+        Trie = buildtree(words)
+        rows, cols = len(board), len(board[0])
+        res = [ ]
 
-        rows = len(board)
-        cols = len(board[0])
+        def dfs(r, c, section):
+            letter = board[r][c]
 
-        def capture(word):
-            def dfs(r, c, ind):
-                if ind == len(word):
-                    return True
-                if r < 0 or r >= rows or c < 0 or c >= cols or board[r][c] != word[ind]:
-                    return False
-                letter = board[r][c]
-                board[r][c] = ''
-                found = dfs(r + 1, c, ind + 1) or dfs(r - 1, c,ind + 1) or dfs(r, c + 1,ind + 1) or dfs(r, c - 1,ind + 1)
-                board[r][c] = letter
-                return found
-            for r in range(rows):
-                for c in range(cols):
-                    if board[r][c] == word[0]:
-                        if dfs(r, c, 0):
-                            return True
-            return False
+            if letter not in section:
+                return 
+            
+            next_node = section[letter]
 
+            if '#' in next_node:
+                res.append(next_node['#'])
+                del next_node["#"] 
+            board[r][c] = ''
 
-        for word in words:
-            if capture(word):
-                res.append(word)
-        return res
+            for dr, dc in [(1, 0), (-1, 0), (0, 1), (0, -1)]:
+                R, C = r + dr, c + dc
+                if 0 <= R < rows and 0 <= C < cols and board[R][C] in next_node:
+                    dfs(R, C, next_node)
+
+            board[r][c] = letter
+
+            if not next_node:
+                section.pop(letter)
         
+        for r in range(rows):
+            for c in range(cols):
+                if board[r][c] in Trie:
+                    dfs(r, c, Trie)
+        return res
