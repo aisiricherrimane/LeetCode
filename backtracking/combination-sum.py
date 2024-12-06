@@ -11,7 +11,7 @@ class Solution:
                 subset.append(candidates[i])
                 backtrack(i, total + candidates[i], subset)
                 subset.pop()
-                backtrack(i + 1, total, subset)
+                backtrack(i + 1, total , subset)
 
         backtrack(0, 0, [])
 
