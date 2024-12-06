@@ -10,7 +10,7 @@ class Solution:
                 currMax = 1
             temp = currMax * n
             currMax = max(currMin * n, currMax * n, n)
-            currMin = max(temp, currMin * n, n)
+            currMin = min(temp, currMin * n, n)
             res = max(res, currMax, currMin)
         return res
 
