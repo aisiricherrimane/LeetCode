@@ -1,20 +1,23 @@
 class Solution:
     def findAnagrams(self, s: str, p: str) -> List[int]:
-        res = []
-        p_len = len(p)
+        p_l = len(p)
+        s_count = Counter(s[:p_l - 1])
         p_count = Counter(p)
-        s_count = Counter()
+        res = []
 
-        for i in range(len(s)):
-            s_count[s[i]] += 1
+        for r in range(p_l - 1, len(s)):
+            s_count[s[r]] += 1
 
-            if i >= p_len:
-                if s_count[s[i - p_len]] == 1:
-                    del s_count[s[i - p_len]]  # Remove character count if it becomes zero
-                else:
-                    s_count[s[i - p_len]] -= 1
-            
             if s_count == p_count:
-                res.append(i - p_len + 1)  # Start index of the anagram
-
+                res.append(r - p_l + 1)
+            
+            s_count[s[r - p_l + 1]] -= 1
+            if s_count[s[r - p_l]] == 0:
+                del s_count[s[r - p_l]]
         return res
+
+
+
+
+
+        
