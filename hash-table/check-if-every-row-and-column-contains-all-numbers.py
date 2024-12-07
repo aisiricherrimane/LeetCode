@@ -4,10 +4,10 @@ class Solution:
         for r in range(len(matrix)):
             rows = set()
             cols = set()
-            for c in range(len(matrix[0])):
+            for c in range(len(matrix)):
                 rows.add(matrix[r][c])
                 cols.add(matrix[c][r])
-            if rows != check and cols != check:
+            if rows != check or cols != check:
                 return False
         return True
                 
