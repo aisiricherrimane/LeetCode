@@ -1,11 +1,10 @@
 class Solution:
     def canConstruct(self, ransomNote: str, magazine: str) -> bool:
-        mag = Counter(magazine)
+        mag_count = Counter(magazine)
+        ran_count = Counter(ransomNote)
 
-        ran = Counter(ransomNote)
-
-        for r in ran:
-            if ran[r] > mag[r]:
+        for l in ran_count:
+            if ran_count[l] > mag_count[l]:
                 return False
         return True
                 
