@@ -10,8 +10,8 @@ class Solution:
             if pcount == window:
                 res.append(i - plength + 1)
             window[s[i - plength + 1]] -= 1
-            if not window[s[i - plength - 1]]:
-                del window[s[i - plength - 1]]
+            if not window[s[i - plength + 1]]:
+                del window[s[i - plength + 1]]
         return res
 
 
