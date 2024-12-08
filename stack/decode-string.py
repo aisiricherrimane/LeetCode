@@ -1,25 +1,25 @@
 class Solution:
     def decodeString(self, s: str) -> str:
-        def ans(self,s):
-            if s.count('[')==0:
-                return s
-            for x in range(len(s)):
-                if s[x]=='[':
-                    i = x-1
-                    k = ""
-                    self.c = 0
-                    while i>-1 and s[i].isdigit():
-                        k += s[i]
-                        i -= 1
-                        self.c += 1
-                    k = k[::-1]
-                    k = int(k)
-                    mx = x-self.c
-                if s[x]==']':
-                    my = x-1
-                    t = ""
-                    t += k*s[mx+self.c+1:my+1]
-                    s = s[:mx]+t+s[my+2:]
-                    return ans(self,s)
-        return ans(self,s)
-        
+        numStack = []
+        charStack = []
+        curr_str = ''
+        curr_num = 0
+
+        for char in s:
+            if char.isdigit():
+                curr_num = curr_num * 10 + int(char)
+            
+            elif char == '[':
+                numStack.append(curr_num)
+                charStack.append(curr_str)
+                curr_num = 0
+                curr_str = ''
+            
+            elif char ==']':
+                num = numStack.pop()
+                prev_str = charStack.pop()
+                curr_str = prev_str + (curr_str * num)
+            
+            else:
+                curr_str += char
+        return curr_str
