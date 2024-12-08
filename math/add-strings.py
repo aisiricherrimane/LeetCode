@@ -21,6 +21,8 @@ class Solution:
             carry = digit // 10
             digit = digit % 10
             res = res + str(digit)
+        if carry:
+            res.append(str(carry))
         return res[::-1]
 
 
