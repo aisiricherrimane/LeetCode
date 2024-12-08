@@ -22,7 +22,7 @@ class Solution:
             digit = digit % 10
             res = res + str(digit)
         if carry:
-            res.append(str(carry))
+            res = res + str(carry)
         return res[::-1]
 
 
