@@ -16,7 +16,7 @@ class Solution:
                 if times[i + 2] - times[i] <= 60:
                     res.append(person)
                     break
-        return res
+        return sorted(res)
 
 
 
