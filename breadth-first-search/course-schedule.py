@@ -4,23 +4,24 @@ class Solution:
 
         for crs, pre in prerequisites:
             adj[crs].append(pre)
-        
+
         visit = set()
+        
         def dfs(crs):
             if crs in visit:
                 return False
             if adj[crs] == []:
                 return True
             visit.add(crs)
-            for neiC in adj[crs]:
-                if not dfs(neiC): return False
+            for p in adj[crs]:
+                if not dfs(p): return False
             visit.remove(crs)
             adj[crs] = []
             return True
         
-
-
         for c in range(numCourses):
-            if not dfs(c):
-                return False
+            if not dfs(c): return False
         return True
+        
+        
+        
