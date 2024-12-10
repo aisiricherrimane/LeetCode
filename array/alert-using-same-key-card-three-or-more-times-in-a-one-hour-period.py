@@ -2,23 +2,22 @@ from collections import defaultdict
 
 class Solution:
     def alertNames(self, keyName: List[str], keyTime: List[str]) -> List[str]:
-        def time_to_hour(time):
-            hr, m = time.split(':')
-            hr = int(hr)
-            m = int(m)
-            return hr * 60 + m
+        temp = {i:[] for i in keyName}
+        def time_convert(time):
+            hr, mn = time.split(':')
+            return ((int(hr) * 60) + int(mn))
         
-        check_in = defaultdict(list)
         for i in range(len(keyName)):
-            check_in[keyName[i]].append(time_to_hour(keyTime[i]))
+            temp[keyName[i]].append(time_convert(keyTime[i]))
         res = []
-        for person, times in check_in.items():
+        for person, times in temp.items():
             times = sorted(times)
             for i in range(len(times) - 2):
                 if times[i + 2] - times[i] <= 60:
                     res.append(person)
                     break
-        return sorted(res)
+        return res
 
-            
+
+
         
