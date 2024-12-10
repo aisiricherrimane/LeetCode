@@ -2,45 +2,35 @@ class Solution:
     def solve(self, board: List[List[str]]) -> None:
         """
         Do not return anything, modify board in-place instead.
+        
         """
         if not board or not board[0]:
-            return
-    
-        rows, cols = len(board), len(board[0])
+            return 
+        rows = len(board)
+        cols = len(board[0])
 
-        # dfs
-        def dfs(r, c):
-            board[r][c] = 'T'
-            directions = [(1, 0), (-1, 0), (0, 1), (0, -1)]
-            for dr, dc in directions:
-                nr, nc = r + dr, c + dc
-                if 0 <= nr < rows and 0 <= nc < cols and board[nr][nc] == 'O':
-                    dfs(nr, nc)
+        def capture(r, c):
+            if 0 <= r < rows and 0 <= c < cols and board[r][c] == 'O':
+                board[r][c] = 'T'
+                capture(r + 1, c)
+                capture(r - 1, c)
+                capture(r, c + 1)
+                capture(r, c - 1)
 
-        # for r
-        for r in range(rows):
-            if board[r][0] == 'O':
-                dfs(r, 0)
-            if board[r][cols - 1] == 'O':
-                dfs(r, cols - 1)
-        # for c
-        for c in range(cols):
-            if board[0][c] == 'O':
-                dfs(0, c)
-            if board[rows - 1][c] == 'O':
-                dfs(rows - 1, c)
         
-        # compleet traverse
+        for r in range(rows):
+            for c in [0, cols - 1]:
+                if board[r][c] == 'O':
+                    capture(r, c)
+        for r in [0, rows - 1]:
+            for c in range(cols):
+                if board[r][c] == 'O':
+                    capture(r, c)
+        
         for r in range(rows):
             for c in range(cols):
-                if board[r][c] == 'T':
-                    board[r][c] = 'O'
-                elif board[r][c] == 'O':
+                if board[r][c] == 'O':
                     board[r][c] = 'X'
-
-        # return
-
-
-
-
+                elif board[r][c] == 'T':
+                    board[r][c] = 'O'
         
