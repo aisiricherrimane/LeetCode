@@ -6,30 +6,19 @@ class Solution:
         rows = len(rooms)
         cols = len(rooms[0])
         q = deque()
-        visit = set()
-        dist = 0
 
-        def bfs(r, c):
-            if r < 0 or r >= rows or c < 0 or c >= cols or (r, c) in visit or rooms[r][c] == -1:
-                return
-            visit.add((r, c))
-            q.append([r, c])
-        
         for r in range(rows):
             for c in range(cols):
                 if rooms[r][c] == 0:
-                    q.append([r, c])
-                    visit.add((r, c))
-        while q:
-            for i in range(len(q)):
-                R, C = q.popleft()
-                rooms[R][C] = dist
-                bfs(R + 1, C)
-                bfs(R - 1, C)
-                bfs(R, C + 1)
-                bfs(R, C - 1)
-            dist += 1
-
-
-            
+                    q.append((r, c))
         
+        while q:
+            r, c  = q.popleft()
+            for dr, dc in [(1, 0), (-1, 0), (0, 1), (0, -1)]:
+                R, C = dr + r, dc + c
+                if 0 <= R < rows and 0 <= C < cols and rooms[R][C] == 2147483647:
+                    rooms[R][C] = rooms[r][c] + 1
+                    q.append((R, C))
+            
+
+                
