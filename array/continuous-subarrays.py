@@ -1,20 +1,17 @@
 class Solution:
     def continuousSubarrays(self, nums: List[int]) -> int:
-        l = 0
-        r = 0 
+        l = r = 0
         count = 0
-        store = []
-        while r < len(nums):
-            store.append(nums[r])
+        freq = {}
 
-            while max(store) - min(store) > 2:
-                store.remove(nums[l])
+        while r < len(nums):
+            freq[nums[r]] = 1 + freq.get(nums[r], 0)
+
+            while max(freq) - min(freq) > 2:
+                freq[nums[l]] -= 1
+                if freq[nums[l]] == 0:
+                    del freq[nums[l]]
                 l += 1
             count += r - l + 1
             r += 1
         return count
-
-
-
-
-        
