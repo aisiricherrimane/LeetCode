@@ -13,6 +13,8 @@ class Solution:
                 l += 1
             while r < len(nums) and nums[r] == 0:
                 r += 1
+                if r == len(nums) - 1:
+                    break
             temp = nums[l]
             nums[l] = nums[r]
             nums[r] = temp
