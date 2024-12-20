@@ -11,7 +11,7 @@ class Solution:
         while r < len(nums):
             while nums[l] != 0:
                 l += 1
-            while nums[r] == 0:
+            while r < len(nums) and nums[r] == 0:
                 r += 1
             temp = nums[l]
             nums[l] = nums[r]
