@@ -6,19 +6,9 @@ class Solution:
         if len(nums) < 2:
             return nums
         l = 0
-        r = l + 1
 
-        while r < len(nums):
-            while nums[l] != 0:
+        for r in range(len(nums)):
+            if nums[r] != 0:
+                nums[l], nums[r] = nums[r], nums[l]
                 l += 1
-            while r < len(nums) and nums[r] == 0:
-                r += 1
-                if r == len(nums) - 1:
-                    break
-            temp = nums[l]
-            nums[l] = nums[r]
-            nums[r] = temp
-            l += 1
-            r += 1
-        return nums
-        
+
