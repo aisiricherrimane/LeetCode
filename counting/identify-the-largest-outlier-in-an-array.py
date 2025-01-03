@@ -5,7 +5,7 @@ class Solution:
         res = nums[0]
         for n in nums:
             if abs(mean - n) > ans:
-                ans = mean - n
+                ans = abs(mean - n) 
                 res = n
         return res
         
