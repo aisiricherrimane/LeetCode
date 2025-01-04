@@ -1,13 +1,12 @@
 class Solution:
     def getLargestOutlier(self, nums: List[int]) -> int:
-        mean = sum(nums) / len(nums)
-        max_diff = 0
-        outlier = nums[0]
-        
-        for n in nums:
-            diff = abs(mean - n)
-            if diff > max_diff:
-                max_diff = diff
-                outlier = n
-        
-        return outlier
+        total = sum(nums)
+        unique = set(nums)
+        res = float('-inf')
+
+        for num in nums:
+            pottential_sum = total - num
+            
+            if pottential_sum - num in unique:
+                res = max(res, pottential_sum - num)
+        return res
