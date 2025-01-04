@@ -14,7 +14,7 @@ class Solution:
         q = deque()
         q.append(beginWord)
         visit = set()
-        visit.add(word)
+        visit.add(beginWord)
         length = 1
 
         while q:
@@ -27,10 +27,11 @@ class Solution:
                 for i in range(len(word)):
                     pattern = word[:i] + '*' + word[i + 1:]
                     for neiW in store[pattern]:
-                        if neiW not in q:
+                        if neiW not in visit:
                             q.append(neiW)
                             visit.add(word)
             length += 1
+            
         
                             
         
