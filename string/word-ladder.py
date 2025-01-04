@@ -29,7 +29,7 @@ class Solution:
                     for neiW in store[pattern]:
                         if neiW not in visit:
                             q.append(neiW)
-                            visit.add(word)
+                            visit.add(neiW)
             length += 1
             
         
