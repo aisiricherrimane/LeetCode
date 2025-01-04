@@ -24,7 +24,7 @@ class Solution:
 
                 if word == endWord:
                     return length
-
+                
                 for i in range(len(word)):
                     pattern = word[:i] + '*' + word[i + 1:]
                     for neiW in store[pattern]:
@@ -32,7 +32,7 @@ class Solution:
                             q.append(neiW)
                             visit.add(neiW)
             length += 1
-            
+        return 0   
         
                             
         
