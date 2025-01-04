@@ -31,6 +31,8 @@ class Solution:
                         if neiW not in visit:
                             q.append(neiW)
                             visit.add(neiW)
+                    store[pattern] = []
+
             length += 1
         return 0   
         
