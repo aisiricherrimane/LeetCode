@@ -2,7 +2,8 @@ class Solution:
     def ladderLength(self, beginWord: str, endWord: str, wordList: List[str]) -> int:
         if endWord not in wordList:
             return 0
-        
+        if beginWord not in wordList:
+            wordList.append(beginWord)
 
         store = defaultdict(list)
 
