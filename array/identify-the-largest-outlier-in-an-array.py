@@ -8,5 +8,5 @@ class Solution:
             pottential_sum = total - num
             
             if pottential_sum - num in unique:
-                res = max(res, pottential_sum - num)
+                res = max(res, num)
         return res
