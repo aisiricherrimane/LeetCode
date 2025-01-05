@@ -21,7 +21,7 @@ class Solution:
         
         for char, count in char_count.items():
             while count > 0:
-                if index > len(s):
+                if index >= len(s):
                     index = 1
                 ans[index] = char
                 index += 2
