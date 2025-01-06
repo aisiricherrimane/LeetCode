@@ -8,8 +8,8 @@ class Solution:
             store[tuple(webs)] += 1
         maxcount = 0
         res = []
-        for key, count in store.items():
+        for key, count in sorted(store.items(), key=lambda x: x[0]):
             if count > maxcount:
                 maxcount = count
-                res = key
+                res = list(key)
         return res
