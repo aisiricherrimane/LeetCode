@@ -3,6 +3,8 @@ class Solution:
         res = ''
         for i in range(len(strs[0])):
             for word in strs[1:]:
+                if i >= len(word):
+                    return res
                 if strs[0][i] != word[i]:
                     return res
             res += strs[0][i]
