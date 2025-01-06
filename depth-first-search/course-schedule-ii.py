@@ -13,7 +13,7 @@ class Solution:
             if crs in curr_cycle:
                 return False
             if crs in visited:
-                return 
+                return True
             curr_cycle.add(crs)
             for pre in adj[crs]:
                 if not dfs(pre):
