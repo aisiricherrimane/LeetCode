@@ -20,12 +20,12 @@ class Solution:
                     return False
             curr_cycle.remove(crs)
             visited.add(crs)
+            res.append(crs)
             return True
         
         for c in range(numCourses):
-            if not dfs:
+            if not dfs(c):
                 return False
-            res.append(c)
         return res
 
         
