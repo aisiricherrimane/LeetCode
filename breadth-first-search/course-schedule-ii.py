@@ -1,30 +1,31 @@
 class Solution:
     def findOrder(self, numCourses: int, prerequisites: List[List[int]]) -> List[int]:
-        adj = {i:[ ] for i in range(numCourses)}
+        adj = {i:[] for i in range(numCourses)}
 
-        for crs, pre in prerequisites:
-            adj[crs].append(pre)
+        for c, p in prerequisites:
+            adj[c].append(p)
         
-        cycle = set()
+        res = []
         visited = set()
-        output = []
+        curr_cycle = set()
+
         def dfs(crs):
-            if crs in cycle:
+            if crs in curr_cycle:
                 return False
             if crs in visited:
-                return True
-            cycle.add(crs)
+                return 
+            curr_cycle.add(crs)
             for pre in adj[crs]:
                 if not dfs(pre):
                     return False
-            cycle.remove(crs)
+            curr_cycle.remove(crs)
             visited.add(crs)
-            output.append(crs)
             return True
         
         for c in range(numCourses):
-            if not dfs(c): return []
-        
-        return output
+            if not dfs:
+                return False
+            res.append(c)
+        return res
 
-            
+        
