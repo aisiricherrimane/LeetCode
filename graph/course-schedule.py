@@ -15,7 +15,7 @@ class Solution:
             for neiC in adj[crs]:
                 if not dfs(neiC):return False
             adj[crs] = []
-            visit.remove(crs)
+            
             return True
         
         for c in range(numCourses):
