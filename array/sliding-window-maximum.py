@@ -13,7 +13,7 @@ class Solution:
             if dq and dq[0] == i - k:
                 dq.popleft
             while dq and nums[i] >= nums[dq[-1]]:
-                dq.pop()
+                dq.popleft()
             
             dq.append(i)
             res.append(nums[dq[0]])
