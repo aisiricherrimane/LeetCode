@@ -1,18 +1,17 @@
 class Solution:
     def getLargestOutlier(self, nums: List[int]) -> int:
-        largest = None
-        total = sum(nums)
-        lookup = set(nums)
+        total_sum = sum(nums)
+        nums_counts = Counter(nums)
 
-        for num in nums:
-            sp = total - num  # Calculate the potential sum of special numbers
+        largest_outlier = float('-inf')
 
-            # Check if sp is valid and distinct from the current num
-            if sp in lookup and sp != num:
-                if largest is None:
-                    largest = num
-                else:
-                    largest = max(largest, num)  # Update largest with the outlier (num), not sp
+        for num in nums_counts.keys():
+            potential = total_sum - 2 * num
 
-        # Since the problem guarantees at least one outlier, largest cannot remain None
-        return largest
+            if potential in nums_counts:
+                if potential != num or nums_counts[num] > 1:
+                    largest_outlier = max(largest_outlier, potential)
+        return largest_outlier
+
+
+        
