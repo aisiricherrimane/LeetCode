@@ -1,48 +1,63 @@
 class Solution:
+    def evaluate_expr(self, stack):
+        # Compute the result of the expression in the stack
+        res = 0
+        sign = 1  # Tracks whether to add (+1) or subtract (-1)
+
+        while stack:
+            element = stack.pop()
+            if isinstance(element, int):  # It's a number
+                res += sign * element
+            elif element == '+':
+                sign = 1
+            elif element == '-':
+                sign = -1
+        return res
+
     def calculate(self, s: str) -> int:
-        def evaluate(stack):
-            res = stack.pop() if stack else 0
-            while stack and stack[-1] != "(":
-                sign = stack.pop()
-                if sign == "+":
-                    res += stack.pop()
-                elif sign == "-":
-                    res -= stack.pop()
-            return res
-        
         stack = []
-        num, sign = 0, "+"
-        i = 0
+        operand = 0
+        sign = 1  # Current sign for numbers (+1 or -1)
 
-        while i < len(s):
-            char = s[i]
-            
-            if char.isdigit():
-                num = num * 10 + int(char)  # Build the current number
-            elif char in "+-":
-                if sign == "+":
-                    stack.append(num)  # Add the current number to the stack
-                elif sign == "-":
-                    stack.append(-num)  # Add the negative of the current number
-                num = 0  # Reset the current number
-                sign = char  # Update the sign
-            elif char == "(":
-                stack.append(sign)  # Save the current sign
-                stack.append("(")  # Mark the start of a sub-expression
-                sign = "+"  # Reset sign for the sub-expression
-            elif char == ")":
-                if sign == "+":
-                    stack.append(num)
-                elif sign == "-":
-                    stack.append(-num)
-                num = evaluate(stack)  # Solve the sub-expression
-                stack.pop()  # Remove the "(" from the stack
-            i += 1
-        
-        # Add the last number
-        if sign == "+":
-            stack.append(num)
-        elif sign == "-":
-            stack.append(-num)
+        for ch in s:
+            if ch.isdigit():
+                # Form the number
+                operand = operand * 10 + int(ch)
+            elif ch == '+':
+                # Push the current operand and reset
+                stack.append(sign * operand)
+                operand = 0
+                sign = 1
+            elif ch == '-':
+                # Push the current operand and reset
+                stack.append(sign * operand)
+                operand = 0
+                sign = -1
+            elif ch == '(':
+                # Push the current result and sign onto the stack for later
+                stack.append(sign)
+                stack.append('(')
+                operand = 0
+                sign = 1
+            elif ch == ')':
+                # Push the last number before processing the parentheses
+                stack.append(sign * operand)
+                operand = 0
 
-        return evaluate(stack)  # Evaluate whatever is left in the stack
+                # Evaluate the expression inside the parentheses
+                res = 0
+                while stack and stack[-1] != '(':
+                    res += stack.pop()
+                stack.pop()  # Remove the '('
+                
+                # Apply the saved sign before '('
+                sign = stack.pop()
+                stack.append(sign * res)
+                operand = 0
+
+        # Add the last operand
+        if operand != 0:
+            stack.append(sign * operand)
+
+        # Evaluate the remaining stack
+        return sum(stack)
