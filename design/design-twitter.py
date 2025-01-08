@@ -7,6 +7,7 @@ class Twitter:
     def postTweet(self, userId: int, tweetId: int) -> None:
         self.tweetmap[userId].append([self.time, tweetId])
         self.time -= 1
+
     def getNewsFeed(self, userId: int) -> List[int]:
         res = []
         minheap = []
@@ -22,7 +23,7 @@ class Twitter:
             time, tweetId, following, ind = heapq.heappop(minheap)
             res.append(tweetId)
             if ind >= 0:
-                heapq.heappush(minheap,[self.tweetmap[following][ind][1], self.tweetmap[following][ind][0],following, ind - 1])
+                heapq.heappush(minheap,[self.tweetmap[following][ind][0], self.tweetmap[following][ind][1],following, ind - 1])
         return res
 
 
@@ -30,11 +31,9 @@ class Twitter:
         self.followmap[followerId].add(followeeId)
 
     def unfollow(self, followerId: int, followeeId: int) -> None:
-        if followerId not in self.followmap or followeeId not in self.followmap[followerId]:
-            return 
-        self.followmap[followerId].remove(followeeId)
-        if not self.followmap[followerId]:
-            del self.followmap[followerId]
+        if followeeId in self.followmap[followerId]:
+            self.followmap[followerId].remove(followeeId)
+        
 
 
 
