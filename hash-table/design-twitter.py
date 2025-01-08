@@ -22,7 +22,7 @@ class Twitter:
             time, tweetId, following, ind = heapq.heappop(minheap)
             res.append(tweetId)
             if ind >= 0:
-                heapq.heappush(minheap,[time, self.tweetmap[following][ind][1], self.tweetmap[following][ind][0], ind - 1])
+                heapq.heappush(minheap,[self.tweetmap[following][ind][1], self.tweetmap[following][ind][0],following, ind - 1])
         return res
 
 
