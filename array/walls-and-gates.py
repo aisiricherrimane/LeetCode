@@ -11,14 +11,16 @@ class Solution:
             for c in range(cols):
                 if rooms[r][c] == 0:
                     q.append((r, c))
-        
-        while q:
-            r, c  = q.popleft()
-            for dr, dc in [(1, 0), (-1, 0), (0, 1), (0, -1)]:
-                R, C = dr + r, dc + c
-                if 0 <= R < rows and 0 <= C < cols and rooms[R][C] == 2147483647:
-                    rooms[R][C] = rooms[r][c] + 1
-                    q.append((R, C))
-            
-
                 
+        while q:
+            r, c = q.popleft()
+            for tr, tc in [(1, 0), (-1 ,0 ), (0, 1), (0, -1)]:
+                dr, dc = tr + r, tc + c
+                if dr >= 0 and dr < rows and dc >= 0 and dc < cols and rooms[dr][dc] == 2147483647:
+                    rooms[dr][dc] = rooms[r][c] + 1
+                    q.append((dr, dc))
+        
+        
+
+
+        
