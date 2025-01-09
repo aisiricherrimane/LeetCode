@@ -1,16 +1,10 @@
 class Solution:
     def findJudge(self, n: int, trust: List[List[int]]) -> int:
-        first = [i[0] for i in trust]
+        judge = trust[0][1]
 
-        case1 = (n*(n+1))//2 - sum(set(first))
-
-        if case1 == 0:
-            return -1
-        else:
-            for j in range(1,n+1):
-                if j == case1:
-                    continue
-                elif [j,case1] not in trust:
-                    return -1
-            return case1
+        for common, maybe in trust:
+            if maybe != judge:
+                return -1
+        return judge
+            
         
