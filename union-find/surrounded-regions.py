@@ -12,7 +12,7 @@ class Solution:
             for dr, dc in [(0, -1), (0, 1), (1, 0), (-1, 0)]:
                 newr, newc = dr + r, dc + c
                 if newr >= 0 and newr < rows and newc >= 0 and newc < cols and board[newr][newc] == 'O':
-                    dfs(new, newc)
+                    dfs(newr, newc)
 
 
         for r in range(rows):
