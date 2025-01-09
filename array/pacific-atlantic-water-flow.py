@@ -5,8 +5,8 @@ class Solution:
         rows = len(heights)
         cols = len(heights[0])
 
-        def dfs(r, c, visit, preV):
-            if 0 <= r < rows and 0 <= c < cols and (r, c) not in visit and heights[r][c] >= preV:
+        def dfs(r, c, visit, prev):
+            if r >= 0 and r < rows and c >= 0 and c < cols and(r, c) not in visit and prev <= heights[r][c]:
                 visit.add((r, c))
                 dfs(r + 1, c, visit, heights[r][c])
                 dfs(r - 1, c, visit, heights[r][c])
