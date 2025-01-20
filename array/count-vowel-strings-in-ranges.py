@@ -1,16 +1,13 @@
+from typing import List
+
 class Solution:
     def vowelStrings(self, words: List[str], queries: List[List[int]]) -> List[int]:
-        prefix  = [0] * (len(words) + 1)
-        vowels = ['a', 'e', 'i', 'o', 'u']
+        # Step 1: Calculate vowel counts for each word
+        vowel_count = [0] * len(words)
 
-        for i, word in enumerate(words):
-            if word[0] in vowels and word[-1] in vowels:
-                prefix[i + 1] = prefix[i] + 1
-            else:
-                prefix[i + 1] = prefix[i]
-        
-        result = []
-        for l, r in queries:
-            result.append(prefix[r + 1] - prefix[l])
-        return result
+        for ind, s in enumerate(words):
+            vowel_count[ind] = sum(1 for char in s if char in 'aeiou')
 
+        # Step 2: Process each query
+        res = [sum(vowel_count[s:e + 1]) for s, e in queries]
+        return res
