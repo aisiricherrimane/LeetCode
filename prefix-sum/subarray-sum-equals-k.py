@@ -1,11 +1,17 @@
 class Solution:
     def subarraySum(self, nums: List[int], k: int) -> int:
-        current_sum = 0
-        prefix_sum = {0:1}
-        count = 0
-        for num in nums:
-            current_sum += num
-            if current_sum - k in prefix_sum:
-                count += prefix_sum[current_sum - k]
-            prefix_sum[current_sum] = 1 + prefix_sum.get(current_sum, 0)
-        return count
+        l = 0
+        res = 0
+        temp = 0
+
+        for r in range(len(nums)):
+            temp += nums[r]
+
+            while temp > k:
+                temp -= nums[l]
+                l += 1
+            
+            if temp == k:
+                res += 1
+        return res
+        
