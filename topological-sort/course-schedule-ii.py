@@ -6,7 +6,7 @@ class Solution:
 
         for p, c in prerequisites:
             adj[p].append(c)
-        print(adj)
+
         
         result = []
         def dfs(crs):
