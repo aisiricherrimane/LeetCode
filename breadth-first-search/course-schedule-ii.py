@@ -20,7 +20,7 @@ class Solution:
                     return False
             current.remove(crs)
             visited.add(crs)
-            result.append(c)
+            result.append(crs)
             return True
 
         for c in range(numCourses):
