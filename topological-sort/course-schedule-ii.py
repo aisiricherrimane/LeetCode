@@ -8,6 +8,7 @@ class Solution:
             adj[p].append(c)
         print(adj)
         
+        result = []
         def dfs(crs):
             if crs in current:
                 return False
@@ -19,14 +20,11 @@ class Solution:
                     return False
             current.remove(crs)
             visited.add(crs)
+            result.append(c)
             return True
 
-        
-        result = []
         for c in range(numCourses):
             if not dfs(c):
                 return []
-            else:
-                result.append(c)
         return result
         
