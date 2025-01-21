@@ -5,38 +5,29 @@ class Solution:
         if beginWord not in wordList:
             wordList.append(beginWord)
 
-        store = defaultdict(list)
-
+        adj = defaultdict(list)
         for word in wordList:
             for i in range(len(word)):
                 pattern = word[:i] + '*' + word[i + 1:]
-                store[pattern].append(word)
-
-        q = deque()
-        q.append(beginWord)
+                adj[pattern].append(word)
+        
+        q = deque([beginWord])
         visit = set()
-        visit.add(beginWord)
         length = 1
 
         while q:
             for _ in range(len(q)):
                 word = q.popleft()
-
                 if word == endWord:
                     return length
-                
+                if word in visit:
+                    continue
+                visit.add(word)
+
                 for i in range(len(word)):
                     pattern = word[:i] + '*' + word[i + 1:]
-                    for neiW in store[pattern]:
-                        if neiW not in visit:
-                            q.append(neiW)
-                            visit.add(neiW)
-                    store[pattern] = []
-
+                    for neiW in adj[pattern]:
+                        q.append(neiW)
             length += 1
-        return 0   
-        
-                            
-        
-
-        
+            
+        return 0
