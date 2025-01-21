@@ -1,37 +1,39 @@
 class Solution:
     def calculate(self, s: str) -> int:
         stack = []
-        curr = 0
+        num = 0 
         sign = 1
 
         for char in s:
             if char.isdigit():
-                curr = curr * 10 + int(char)
+                num = num * 10 + int(char)
             elif char == '+':
-                stack.append(sign * curr)
+                stack.append(num * sign)
+                num = 0
                 sign = 1
-                curr = 0
             elif char == '-':
-                stack.append(sign * curr)
+                stack.append(num * sign)
+                num = 0
                 sign = -1
-                curr = 0
             elif char == '(':
                 stack.append(sign)
                 stack.append('(')
                 sign = 1
-                curr = 0
+                
             elif char == ')':
-                stack.append(sign * curr)
-                curr = 0
+                stack.append(num * sign)
+                num = 0
 
-                res = 0
+                temp = 0
                 while stack and stack[-1] != '(':
-                    res += stack.pop()
+                    temp += stack.pop()
+
                 stack.pop()
                 sign = stack.pop()
 
-                stack.append(sign * res)
-                
-        if curr != 0:
-            stack.append(curr * sign)
+                stack.append(sign * temp)
+        if num != 0:
+            stack.append(sign * num)
         return sum(stack)
+
+
