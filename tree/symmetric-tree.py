@@ -6,19 +6,15 @@
 #         self.right = right
 class Solution:
     def isSymmetric(self, root: Optional[TreeNode]) -> bool:
-        def same(p, q):
-            if not p and not q:
+        def dfs(left, right):
+            if not left and not right:
                 return True
-            if p and q and p.val == q.val:
-                return same(p.left, q.right) and same(p.right, q.left)
-            else:
+            
+            if not left or not right:
                 return False
             
-        if not root:
-            return True
-        p = root.right
-        q = root.left
-        return same(p,q)
+            return (left.val == right.val) and dfs(left.left, right.right) and dfs(left.right, right.left)
 
-            
+        return dfs(root.left, root.right)
+        
         
