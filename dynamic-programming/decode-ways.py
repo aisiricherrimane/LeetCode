@@ -9,7 +9,6 @@ class Solution:
                 dp[i] = dp[i + 1]
 
             if (i + 1) < len(s) and ((s[i] == '1'and s[i + 1] in '0123456789') or (s[i] == '2' and s[i + 1] in '0123456')):
-          
                 dp[i] += dp[i + 2]
         return dp[0]
         
