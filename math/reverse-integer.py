@@ -12,5 +12,4 @@ class Solution:
             curr = curr * 10 + last
             x = x // 10
         
-        return curr * sign 
-        
+        return curr * sign if (curr > -2**31 and curr < 2**31 - 1) else 0
