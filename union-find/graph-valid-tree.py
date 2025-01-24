@@ -1,24 +1,30 @@
 class Solution:
     def validTree(self, n: int, edges: List[List[int]]) -> bool:
-        adj = {i : [] for i in range(n)}
+        par = [i for i in range(n)]
+        child = [1] * n
 
-        for n1, n2 in edges:
-            adj[n1].append(n2)
-            adj[n2].append(n1)
+        def find(n):
+            n = par[n]
+            while n != par[n]:
+                par[n] = par[par[n]]
+                n = par[n]
+            return n
+        
+        def union(n1, n2):
+            p1, p2 = par[n1], par[n2]
 
-        visit = set()
-
-        def dfs(node, prev):
-            if node in visit:
+            if par[p1] == par[p2]:
                 return False
-            
-            visit.add(node)
-            for neiNodes in adj[node]:
-                if neiNodes == prev:
-                    continue
-                if not dfs(neiNodes, node):
-                    return False
-            
-            return True
-        return dfs(0, -1) and len(visit) == n 
 
+            if par[p1] != par[n2]:
+                if child[p1] > child[p2]:
+                    child[p1] += 1
+                    par[p2] = p1
+                else:
+                    child[p2] += 1
+                    par[p1] = p2
+            return True
+        
+        for u, v in edges:
+            if not union(u, v):return False
+        return True
