@@ -15,7 +15,7 @@ class Solution:
             p2 = find(n2)
 
             if p1 == p2:
-                return False
+                return 0
 
             if child[p1] > child[p2]:
                 child[p1] += 1
@@ -23,12 +23,11 @@ class Solution:
             else:
                 child[p2] += 1
                 par[p1] = p2
-            return True
+            return 1
 
         res = n
         for u, v in edges:
-            if union(u, v):
-                res -= 1
+            res -= union(u, v)
         return res
 
      
