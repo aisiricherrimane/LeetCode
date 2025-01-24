@@ -21,9 +21,7 @@ class Solution:
                 rank[p2] += 1
                 par[p1] = p2
             return True
-        
-        for n1, n2 in edges:
-            if not union(n1, n2):
-                return [n1, n2]
 
-        
+        for u, v in edges:
+            if not union(u, v):
+                return [u, v]
