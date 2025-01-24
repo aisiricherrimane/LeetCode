@@ -13,9 +13,9 @@ class Solution:
                     else:
                         break
             
-                else:
-                    if len(word1) > len(word2):
-                        return False
+            else:
+                if len(word1) > len(word2):
+                    return False
         return True                
 
         
