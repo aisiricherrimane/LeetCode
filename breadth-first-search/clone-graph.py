@@ -11,16 +11,19 @@ class Solution:
     def cloneGraph(self, node: Optional['Node']) -> Optional['Node']:
         if not node:
             return None
-        clone = defaultdict(list)
 
+        adj = {}
         def dfs(root):
-            if root in clone:
-                return clone[root]
+            if root in adj:
+                return adj[root]
+
             temp = Node(root.val)
-            clone[root] = temp
+            adj[root] = temp
+
             for neiN in root.neighbors:
-                clone[root].neighbors.append(dfs(neiN))
+                adj[root].neighbors.append(dfs(neiN))
             return temp
-        
+    
         return dfs(node)
+      
 
