@@ -1,25 +1,36 @@
 class Solution:
     def findItinerary(self, tickets: List[List[str]]) -> List[str]:
-        adj = {src: [] for src, dst in tickets}
-        tickets.sort()
-        for src, dst in tickets:
-            adj[src].append(dst)
+        adj = {s:[] for s, e in tickets}
 
-        res = ["JFK"]
-        def dfs(src):
+        for s, d in tickets:
+            adj[s].append(d)
+        
+        for key in adj:
+            adj[key].sort()
+        
+
+        res = ['JFK']
+
+        def dfs(dst):
             if len(res) == len(tickets) + 1:
                 return True
-            if src not in adj:
+            
+            if dst not in adj:
                 return False
+            
+            temp = list(adj[dst])
 
-            temp = list(adj[src])
             for i, v in enumerate(temp):
-                adj[src].pop(i)
+                adj[dst].pop(i)
                 res.append(v)
-                if dfs(v): return True
-                adj[src].insert(i, v)
+
+                if dfs(v):
+                    return True
+                
+                adj[dst].insert(i, v)
                 res.pop()
             return False
-            
-        dfs("JFK")
-        return res
+
+        return res if dfs('JFK') else False
+
+
