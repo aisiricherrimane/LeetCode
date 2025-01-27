@@ -1,9 +1,9 @@
 class Solution:
     def canJump(self, nums: List[int]) -> bool:
-        maxjump = 0
+        max_reach = 0
 
-        for i, n in enumerate(nums):
-            if maxjump < i:
+        for i, jumps in enumerate(nums):
+            if max_reach < i:
                 return False
-            maxjump = max(maxjump, i + n)
+            max_reach = i + jumps
         return True
