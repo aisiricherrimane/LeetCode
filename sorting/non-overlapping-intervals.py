@@ -10,6 +10,7 @@ class Solution:
         for s, e in intervals[1:]:
             if s < last_end:
                 count += 1
+                last_end = min(last_end, e)
             else:
                 last_end = e
         return count
