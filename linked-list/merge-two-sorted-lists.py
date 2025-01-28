@@ -15,16 +15,12 @@ class Solution:
             else:
                 temp.next = ListNode(list2.val)
                 list2 = list2.next
-            
             temp = temp.next
         
-        if list1 and not list2:
-            temp.next = ListNode(list1.val)
-            list1 = list1.next
-            temp = temp.next
-        elif list2 and not list1:
-            temp.next = ListNode(list2.val)
-            list2 = list2.next
-            temp = temp.next
+        if list1: 
+            temp.next = list1 
+        
+        if list2:
+            temp.next = list2
         
         return dummy.next
