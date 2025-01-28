@@ -12,7 +12,7 @@ class Solution:
             x = x // 10
 
             temp = temp * 10 + digit
-        return temp * sign (temp > -2**31 and temp < 2**31 - 1) else 0
+        return temp * sign if (temp > -2**31 and temp < 2**31 - 1) else 0
 
         
        
