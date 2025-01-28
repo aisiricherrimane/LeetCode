@@ -3,16 +3,23 @@ class Solution:
         """
         Do not return anything, modify nums in-place instead.
         """
+        i = 0
+        l = 0
+        r = len(nums) - 1
 
-        for i in range(len(nums) - 1):
-            swapped = False
-            for j in range(i + 1, len(nums)):
-                if nums[j] < nums[i]:
-                    nums[i], nums[j] = nums[j], nums[i]
-                    swapped = True
-            if swapped == False:
-                break
+        def swap(a, b):
+            temp = nums[b]
+            nums[b] = nums[a]
+            nums[a] = temp
+
+        while i <= r:
+            if nums[i] == 0:
+                swap(i, l)
+                l += 1
+            if nums[i] == 2:
+                swap(i, r)
+                r -= 1
+            i += 1
         return nums
-
 
         
