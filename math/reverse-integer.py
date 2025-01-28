@@ -3,13 +3,16 @@ class Solution:
         sign = 1
         if x < 0:
             sign = -1
-            x = x * -1
-        
-        curr = 0
+            x = -1 * x
+
+        temp = 0
 
         while x > 0:
-            last = x % 10
-            curr = curr * 10 + last
+            digit = x % 10
             x = x // 10
+
+            temp = temp * 10 + digit
+        return temp * sign (temp > -2**31 and temp < 2**31 - 1) else 0
+
         
-        return curr * sign if (curr > -2**31 and curr < 2**31 - 1) else 0
+       
