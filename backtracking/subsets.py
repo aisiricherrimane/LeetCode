@@ -11,6 +11,4 @@ class Solution:
             subset.pop()
             dfs(i + 1, subset)
         dfs(0, [])
-
         return res
-            
