@@ -11,21 +11,18 @@ class Solution:
     def copyRandomList(self, head: 'Optional[Node]') -> 'Optional[Node]':
         if not head:
             return None
-        oldtonew = {}
-        curr = head
 
+        temp = {}
+        curr = head
         while curr:
-            temp = Node(curr.val)
-            oldtonew[curr] = temp
+            temp[curr] = Node(curr.val)
             curr = curr.next
 
         curr = head
         while curr:
-            copy = oldtonew[curr]
-            copy.next = oldtonew.get(curr.next)
-            copy.random = oldtonew.get(curr.random)
+            copy = temp[curr]
+            copy.next = temp.get(curr.next)
+            copy.random = temp.get(curr.random)
             curr = curr.next
-        
-        return oldtonew[head]
-
+        return temp[head]
         
