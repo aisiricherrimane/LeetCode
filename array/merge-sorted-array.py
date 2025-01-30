@@ -13,8 +13,9 @@ class Solution:
                 nums1[curr] = nums2[n - 1]
                 n -= 1
             curr -= 1
-        
         while n > 0:
             nums1[curr] = nums2[n - 1]
             n -= 1
             curr -= 1
+
+        
