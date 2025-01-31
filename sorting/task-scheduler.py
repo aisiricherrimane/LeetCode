@@ -12,8 +12,9 @@ class Solution:
             if heap:
                 num = heapq.heappop(heap) + 1
                 if num != 0:
-                    q.append([num, time + n])
-            if q and q[0][1] == time:
-                heapq.heappush(heap, q.popleft()[0])
+                    q.append([time + n, num])
+            
+            if q and q[0][0] == time:
+                heapq.heappush(heap, q.popleft()[1])
         return time
-        
+            
