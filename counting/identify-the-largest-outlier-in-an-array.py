@@ -1,17 +1,17 @@
 class Solution:
     def getLargestOutlier(self, nums: List[int]) -> int:
-        sum_v = sum(nums)
+        total_sum = sum(nums)
         num_count = Counter(nums)
         largest_outlier = float('-inf')
 
-        for num in num_count.keys():
-            possible = sum_v - 2 * num
+        for n in nums:
+            possible_outlier = total_sum - (2 * n)
 
-            if possible in num_count:
-                if possible != num or num_count[num] > 1:
-                    largest_outlier = max(largest_outlier, possible)
+            if possible_outlier in num_count:
+                if possible_outlier != n or num_count[n] > 1:
+                    largest_outlier = max(largest_outlier, possible_outlier)
         return largest_outlier
 
-
+            
 
         
