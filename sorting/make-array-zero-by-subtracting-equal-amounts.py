@@ -3,6 +3,3 @@ class Solution:
         temp = set(nums)
         temp.discard(0)
         return len(temp)
-
-
-        
