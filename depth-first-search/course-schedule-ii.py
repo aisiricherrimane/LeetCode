@@ -19,7 +19,7 @@ class Solution:
                 if not dfs(pre):
                     return False
             cycle.remove(crs)
-            res.append(c)
+            res.append(crs)
             visited.add(crs)
             return True
         
