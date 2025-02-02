@@ -9,6 +9,6 @@ class Solution:
             max_jump = max(max_jump, i + n)
             if max_jump >= len(nums):
                 return True
-        return False
+        return True
 
         
