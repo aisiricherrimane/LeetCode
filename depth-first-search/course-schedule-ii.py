@@ -19,14 +19,13 @@ class Solution:
                 if not dfs(pre):
                     return False
             cycle.remove(crs)
+            res.append(c)
             visited.add(crs)
             return True
         
         for c in range(numCourses):
             if not dfs(c):
                 return []
-            else:
-                res.append(c)
         return res
 
 
