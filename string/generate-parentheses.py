@@ -5,6 +5,7 @@ class Solution:
 
         def bactrack(opened, closed):
             if opened == closed == n:
+                print(sub)
                 res.append(''.join(sub))
                 return 
             if opened < n:
