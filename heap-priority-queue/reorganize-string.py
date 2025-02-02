@@ -18,11 +18,11 @@ class Solution:
             res[ind] = letter
             ind += 2
             char_count[letter] -= 1
-
+            
+        if ind >= len(res):
+                    ind = 1
         for char, count in char_count.items():
             while count > 0:
-                if ind >= len(res):
-                    ind = 1
                 res[ind] = char
                 count -= 1
                 ind += 2
