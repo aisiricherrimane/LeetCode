@@ -1,5 +1,6 @@
 class Solution:
     def sumSubarrayMins(self, arr: List[int]) -> int:
+        mod = 10**9 + 7
         sum_min_subs = 0
         stack = []
 
@@ -12,5 +13,5 @@ class Solution:
                 count = (mid - left) * (right - mid)
                 sum_min_subs += (count * arr[mid])
             stack.append(i)
-        return sum_min_subs
+        return sum_min_subs % mod
         
