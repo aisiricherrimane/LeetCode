@@ -1,20 +1,16 @@
 class Solution:
     def mostVisitedPattern(self, username: List[str], timestamp: List[int], website: List[str]) -> List[str]:
-        data = sorted(zip(timestamp, username, website))
         user_web = defaultdict(list)
+        for i, user in enumerate(username):
+            user_web[user].append(website[i])
 
-        for _, user, web in data:
-            user_web[user].append(web)
+        web_user = defaultdict(int)
+
+        for u, webs in user_web.items():
+            for c in combinations(webs, 3):
+                web_user[c] += 1
         
-        web_count = defaultdict(int)
-        for user, web in user_web.items():
-            for pattern in set(combinations(web, 3)):
-               web_count[pattern] += 1
-        
-        most_visited = sorted(web_count.keys(), key = lambda x:(-web_count[x], x))
+        w = sorted(web_user.keys(), key= lambda x:(-web_user[x], x))
+        return list(w)[0]
 
-        return list(most_visited[0])
-         
-
-            
         
