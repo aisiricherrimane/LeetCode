@@ -1,11 +1,10 @@
-from typing import List
-
 class Solution:
     def platesBetweenCandles(self, s: str, queries: List[List[int]]) -> List[int]:
         n = len(s)
         res = []
         prefix_plate = [0] * n
         plates = 0
+
         for i in range(n):
             if s[i] == '*':
                 plates += 1
@@ -24,7 +23,7 @@ class Solution:
             if s[i] == '|':
                 nearest = i
             right_candle[i] = nearest
-
+        
         for start, end in queries:
             left_bound = right_candle[start]
             right_bound = left_candle[end]
@@ -33,6 +32,6 @@ class Solution:
                 res.append(prefix_plate[right_bound] - prefix_plate[left_bound])
             else:
                 res.append(0)
-
         return res
 
+        
