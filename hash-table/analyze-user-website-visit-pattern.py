@@ -11,6 +11,6 @@ class Solution:
                 web_user[c] += 1
         
         w = sorted(web_user.keys(), key= lambda x:(-web_user[x], x))
-        return list(w)[0]
+        return listed(w)[0]
 
         
