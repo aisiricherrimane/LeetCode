@@ -10,12 +10,11 @@ class Solution:
         if not root:
             return res
         q = deque()
-        if root:
-            q.append(root)
-        
+        q.append(root)
+
         while q:
-            level = [ ]
-            for i in range(len(q)):
+            level = []
+            for _ in range(len(q)):
                 node = q.popleft()
                 if node.left:
                     q.append(node.left)
