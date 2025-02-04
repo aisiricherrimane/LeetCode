@@ -6,7 +6,7 @@ class Solution:
         for r, num in enumerate(nums):
             k -= 1 - num
 
-            while k < 0:
+            if k < 0:
                 k += 1 - nums[l]
                 l += 1
             
