@@ -7,7 +7,7 @@ class Solution:
             k -= 1 - num
 
             while k < 0:
-                k += 1 + nums[l]
+                k += 1 - nums[l]
                 l += 1
             if k >= 0:
                 result = max(result, r - l + 1)
