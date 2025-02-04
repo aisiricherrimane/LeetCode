@@ -11,29 +11,25 @@ class Solution:
             if char.isdigit():
                 curr = 0
                 while i < len(s) and s[i].isdigit():
-                    curr = curr* 10 + int(s[i])
+                    curr = curr*10 + int(s[i])
                     i += 1
                 i -= 1
-
                 if sign == '+':
                     res += curr
                     prev = curr
-
                 elif sign == '-':
                     res -= curr
                     prev = -curr
-
                 elif sign == '*':
                     res -= prev
                     res += prev * curr
                     prev = prev * curr
-                else:
+                elif sign == '/':
                     res -= prev
                     res += int(prev / curr)
                     prev = int(prev / curr)
-
                 curr = 0
-            elif char != " ":
+            elif char != ' ':
                 sign = char
             i += 1
         return res
