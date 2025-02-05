@@ -14,6 +14,7 @@ class Solution:
             elif nums[i] == 2:
                 nums[r], nums[i] = nums[i], nums[r]
                 r -= 1
+                i -= 1
             i += 1
         return nums
 
