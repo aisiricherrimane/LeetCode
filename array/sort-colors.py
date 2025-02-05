@@ -3,14 +3,19 @@ class Solution:
         """
         Do not return anything, modify nums in-place instead.
         """
-        n = len(nums)
+        i = 0
+        l = 0
+        r = len(nums) - 1
 
-        for i in range(n):
-            swapped = False
-            for j in range(0, n - i - 1):
-                if nums[j] > nums[j + 1]:
-                    nums[j], nums[j + 1] = nums[j + 1], nums[j]
-                    swapped = True
-            if not swapped: break
+        while i <= r:
+            if nums[i] == 0:
+                nums[l], nums[i] = nums[i], nums[l]
+                l += 1
+            elif nums[i] == 2:
+                nums[r], nums[i] = nums[i], nums[r]
+                r -= 1
+            i += 1
         return nums
+
+        
     
