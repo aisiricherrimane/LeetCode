@@ -5,6 +5,7 @@ class Solution:
         for i in range(1, len(prices)):
             if prices[i] > prices[i - 1]:
                 max_profit += prices[i] - prices[i - 1]
+                print(max_profit)
         return max_profit
             
 
