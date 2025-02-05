@@ -1,6 +1,6 @@
 class Solution:
     def asteroidCollision(self, asteroids: List[int]) -> List[int]:
- 
+        ans = []
         stack = []
 
         for x in asteroids:
@@ -15,5 +15,6 @@ class Solution:
                     if stack[-1] == abs(x):
                         stack.pop()
             
-        return stack
+        ans += stack
+        return ans
                 
