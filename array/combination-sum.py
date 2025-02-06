@@ -5,13 +5,13 @@ class Solution:
             if total == target:
                 result.append(curr[:])
                 return 
-            if total > target:
+            if i >= len(candidates) or total > target:
                 return
-            if i < len(candidates):
-                curr.append(candidates[i])
-                backtrack(i, curr, total + candidates[i])
-                curr.pop()
-                backtrack(i + 1, curr, total)
+            
+            curr.append(candidates[i])
+            backtrack(i, curr, total + candidates[i])
+            curr.pop()
+            backtrack(i + 1, curr, total)
         backtrack(0, [], 0)
         return result
 
