@@ -2,25 +2,22 @@ class Solution:
     def checkIfPrerequisite(self, numCourses: int, prerequisites: List[List[int]], queries: List[List[int]]) -> List[bool]:
         adj = {i:[] for i in range(numCourses)}
 
-        for u, v in prerequisites:
-            adj[v].append(u)
+        for p, c in prerequisites:
+            adj[c].append(p)
         
-        premap = defaultdict(set)
+        
+        
+        def dfs(crs, check):
+            if crs == check:
+                return True
+            for neiN in adj[crs]:
+                if dfs(neiN, check):
+                    return True
+            else:
+                return False
 
-        def dfs(crs):
-            if crs not in premap:
-                for c in adj[crs]:
-                    premap[crs] |= dfs(c)
-                premap[crs].add(crs)
-            return premap[crs]
-        
-        for crs in range(numCourses):
-            dfs(crs)
-        
         res = []
-
-        for c1, c2 in queries:
-            res.append(c1 in premap[c2])
+        for p, c in queries:
+            res.append(dfs(c, p))
         return res
-
         
