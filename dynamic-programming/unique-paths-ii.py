@@ -3,6 +3,9 @@ class Solution:
         row = len(obstacleGrid)
         col = len(obstacleGrid[0])
 
+        if obstacleGrid[row - 1][col - 1] == 1:
+            return 0
+            
         dp = [[1] * col for _ in range(row)]
         
         for r in range(1, row):
