@@ -12,4 +12,4 @@ class Solution:
                 ans += 1
             else:
                 times[-1] = lead
-        return ans + len(times)
+        return (ans + len(times))
