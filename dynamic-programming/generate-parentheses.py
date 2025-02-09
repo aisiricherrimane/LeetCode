@@ -2,23 +2,19 @@ class Solution:
     def generateParenthesis(self, n: int) -> List[str]:
         res = []
         sub = []
-
-        def bactrack(opened, closed):
-            if opened == closed == n:
-                print(sub)
+        def backtrack(openP, closeP):
+            if openP == closeP == n:
                 res.append(''.join(sub))
                 return 
-            if opened < n:
+            if openP < n:
                 sub.append('(')
-                bactrack(opened + 1, closed)
+                backtrack(openP + 1, closeP)
                 sub.pop()
-            if closed < opened:
+            if openP > closeP:
                 sub.append(')')
-                bactrack(opened, closed + 1)
+                backtrack(openP, closeP + 1)
                 sub.pop()
-        
-        bactrack(0, 0)
+            
+        backtrack(0, 0)
         return res
 
-
-        
