@@ -22,7 +22,7 @@ class Solution:
             
             visit.add(p)
             res += dist
-            print(minH)
+ 
             for neiP, neid in adj[p]:
                 if neiP not in visit:
                     heapq.heappush(minH, [neid, neiP])
