@@ -12,6 +12,7 @@ class Solution:
                 if word1[j] != word2[j]:
                     adj[word1[j]].append(word2[j])
                     break
+
         visited = {}
         res = []
         def dfs(letter):
@@ -26,6 +27,7 @@ class Solution:
             res.append(letter)
         
         for l in adj:
-            dfs(l)
+            if dfs(l):
+                return ''
         res.reverse()
         return ''.join(res)
