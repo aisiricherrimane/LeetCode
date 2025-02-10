@@ -6,7 +6,7 @@ class Solution:
         def dfs(i):
             if i >= len(s):
                 res.append(part[:])
-                return 
+                return
             for j in range(i, len(s)):
                 if self.pali(s[i:j + 1]):
                     part.append(s[i:j + 1])
@@ -14,7 +14,5 @@ class Solution:
                     part.pop()
         dfs(0)
         return res
-    
     def pali(self, c):
         return c == c[::-1]
-               
