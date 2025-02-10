@@ -16,18 +16,16 @@ class Solution:
 
             if p1 == p2:
                 return 0
-
+            
             if child[p1] > child[p2]:
-                child[p1] += 1
                 par[p2] = p1
+                child[p1] += 1
             else:
-                child[p2] += 1
                 par[p1] = p2
+                child[p2] += 1
             return 1
-
-        res = n
+        
         for u, v in edges:
-            res -= union(u, v)
-        return res
-
-     
+            n -= union(u, v)
+        return n
+        
