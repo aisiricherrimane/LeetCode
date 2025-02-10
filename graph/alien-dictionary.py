@@ -14,23 +14,18 @@ class Solution:
                     break
         visited = {}
         res = []
-
         def dfs(letter):
             if letter in visited:
                 return visited[letter]
             visited[letter] = True
 
-            for neiC in adj[letter]:
-                if dfs(neiC):
+            for nextL in adj[letter]:
+                if dfs(nextL):
                     return True
             visited[letter] = False
             res.append(letter)
-
-        for c in adj:
-            if dfs(c):
-                return ''
         
+        for l in adj:
+            dfs(l)
         res.reverse()
         return ''.join(res)
-
-        
