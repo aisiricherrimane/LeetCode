@@ -6,13 +6,13 @@ class Solution:
         for i, h in enumerate(heights):
             start = i
             while stack and stack[-1][1] > h:
-                index, height = stack.pop()
-                maxA = max(maxA, height * (i - index))
-                start = index
+                ind, height = stack.pop()
+                maxA = max(maxA, (i - ind) * height)
+                start = ind
             stack.append((start, h))
-
-        for i, h in stack:
-            maxA = max(maxA, h * (len(heights) - i))
+        
+        while stack:
+            ind, height = stack.pop()
+            maxA = max(maxA, (len(heights) - ind) * height)
         return maxA
-        
-        
+
