@@ -1,5 +1,5 @@
 class Solution:
-    def spiralOrder(self, matrix):
+    def spiralOrder(self, matrix: List[List[int]]) -> List[int]:
         res = []
 
         if not matrix:
