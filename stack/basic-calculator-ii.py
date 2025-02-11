@@ -13,13 +13,12 @@ class Solution:
                     curr = curr * 10 + int(s[i])
                     i += 1
                 i -= 1
-
                 if sign == '+':
-                    prev = curr
                     res += curr
+                    prev = curr
                 elif sign == '-':
                     res -= curr
-                    prev = curr
+                    prev = -curr
                 elif sign == '*':
                     res -= prev
                     res += prev * curr
