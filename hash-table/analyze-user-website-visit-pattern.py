@@ -1,25 +1,18 @@
 class Solution:
     def mostVisitedPattern(self, username: List[str], timestamp: List[int], website: List[str]) -> List[str]:
-        
-        sorted_data = sorted(zip(timestamp, username, website))  # Sort by timestamp automatically
+        data = sorted(zip(timestamp, username, website))
+
         user_web = defaultdict(list)
+        for t, u, w in data:
+            user_web[u].append(w)
 
-        # Step 2: Group websites visited by each user
-        for _, user, web in sorted_data:
-            user_web[user].append(web)
-
-        # Step 3: Count unique 3-sequence patterns per user
-        web_user = defaultdict(int)
-
-        for u, webs in user_web.items():
-            unique_combinations = set(combinations(webs, 3))  # Avoid duplicate sequences per user
-            for c in unique_combinations:
-                web_user[c] += 1
+        web_user_count = defaultdict(int)
+        for u, w in user_web.items():
+            for c in combinations(w, 3):
+                web_user_count[c] += 1
         
-        # Step 4: Sort by frequency (descending), then lexicographically
-        w = sorted(web_user.keys(), key=lambda x: (-web_user[x], x))
-        
-        return list(w[0])  # Return the most visited sequence
+        res = sorted(web_user_count.keys(), key = lambda x:(-web_user_count[x], x))
 
-
+        return list(res[0])
         
+       
