@@ -8,10 +8,13 @@ class Solution:
             user_web[u].append(w)
 
         web_user_count = defaultdict(int)
-
+        
         for u, w in user_web.items():
-            for c in set(combinations(w, 3)):
-                web_user_count[c] += 1
+            seen = set()  # Avoid redundant counting per user
+            for c in combinations(w, 3):
+                if c not in seen:
+                    web_user_count[c] += 1
+                    seen.add(c)
         
         res = sorted(web_user_count.keys(), key = lambda x:(-web_user_count[x], x))
 
