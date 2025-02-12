@@ -3,9 +3,9 @@ class Solution:
         intervals.sort()
         res = [intervals[0]]
 
-        for i in range(1, len(intervals)):
-            if res[-1][1] < intervals[i][0]:
-                res.append(intervals[i])
+        for i in  intervals[1:]:
+            if i[0] <= res[-1][1]:
+                res[-1][1] = max(i[1], res[-1][1])
             else:
-                res[-1] = [min(intervals[i][0], res[-1][0]), max(intervals[i][1], res[-1][1])]
+                res.append(i)
         return res
