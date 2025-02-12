@@ -19,7 +19,7 @@ class Solution:
                 last_server_in_row[r] = -1
         
         for r in range(row):
-            if last_server_in_row != -1 and col_count[last_server_in_row[r]] > 1:
+            if last_server_in_row[r]!= -1 and col_count[last_server_in_row[r]] > 1:
                 comunicating_servers += 1
         return comunicating_servers
             
