@@ -8,8 +8,8 @@ class Solution:
 
             if nums[mid] == target:
                 return mid
-            
-            elif nums[l] <= nums[mid]:
+
+            if nums[l] <= nums[mid]:
                 if target < nums[l] or target > nums[mid]:
                     l = mid + 1
                 else:
@@ -20,4 +20,4 @@ class Solution:
                 else:
                     l = mid + 1
         return -1
-       
+            
