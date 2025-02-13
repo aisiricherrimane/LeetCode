@@ -1,49 +1,39 @@
-class Node():
+class Node:
     def __init__(self, key, val):
-        self.val = val
         self.key = key
+        self.val = val
         self.prev = None
         self.next = None
 
-class LRUCache():
-    def __init__(self, capacity: int):
+class LRUCache:
+    def __init__(self, capacity):
+        self.capacity = capacity
+        self.cache = {}
         self.left = Node(0, 0)
         self.right = Node(0, 0)
-        self.left.next, self.right.prev = self.right, self.left
-
-        # cache dict = node
-        self.cache = {}
-        self.capacity = capacity
+        self.left.next = self.right
+        self.right.prev = self.left
     
-    def put(self, key: int, value: int) -> None:
+    def put(self, key, value):
         if key in self.cache:
             self.cache[key].val = value
             self.remove(self.cache[key])
         else:
-            self.cache[key] = Node(key,value)
+            self.cache[key] = Node(key, value)
 
         self.add(self.cache[key])
 
         if len(self.cache) > self.capacity:
-            LRU = self.left.next
-            self.remove(LRU)
-            del self.cache[LRU.key]
+            lru = self.left.next
+            del self.cache[lru.key]
+            self.remove(lru)
     
-    def get(self, key: int) -> int:
-        if key in self.cache:
-            self.remove(self.cache[key])
-            self.add(self.cache[key])
-            return self.cache[key].val
-        else:
+    def get(self, key):
+        if key not in self.cache:
             return -1
-    
-    def remove(self, node):
-        p = node.prev
-        n = node.next
-
-        p.next, n.prev = n, p
-
-        node.next, node.prev = None, None
+        self.remove(self.cache[key])
+        self.add(self.cache[key])
+        return self.cache[key].val
     
     def add(self, node):
         p = self.right.prev
@@ -53,4 +43,12 @@ class LRUCache():
         n.prev = node
         node.prev = p
         node.next = n
+    
+    def remove(self, node):
+        p = node.prev
+        n = node.next
+
+        p.next = n
+        n.prev = p
+
 
