@@ -12,7 +12,7 @@ class Solution:
                 hours += math.ceil(p / mid)
             if hours <= h:
                 result = min(result, mid)
-                r = mid - 1
+                r = mid
             else:
                 l = mid + 1
         return result 
