@@ -4,29 +4,28 @@ class Solution:
 
         for c, p in prerequisites:
             adj[c].append(p)
-
+        
+        res = []
         visited = set()
         cycle = set()
-        res = []
 
         def dfs(crs):
-            if crs in cycle:
-                return False
             if crs in visited:
                 return True
+            if crs in cycle:
+                return False
             cycle.add(crs)
+
             for pre in adj[crs]:
-                if not dfs(pre):
-                    return False
+                if not dfs(pre): return False
             cycle.remove(crs)
-            res.append(crs)
             visited.add(crs)
+            res.append(crs)
             return True
+
+
         
-        for c in range(numCourses):
-            if not dfs(c):
+        for i in range(numCourses):
+            if not dfs(i):
                 return []
         return res
-
-
-        
