@@ -19,7 +19,7 @@ class Solution:
                 if node:
                     q.append(node.left) if node.left else None
                     q.append(node.right) if node.left else None
-                l   evel.append(node.val)
+                    level.append(node.val)
             res.append(level)
         return res
 
