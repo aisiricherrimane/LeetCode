@@ -14,20 +14,20 @@ class Solution:
         q = deque([beginWord])
         length = 1
         visit = set()
-        
+        visit.add(beginWord)
         while q:
             for _ in range(len(q)):
                 word = q.popleft()
 
                 if word == endWord:
                     return length
-                if word in visit:
-                    continue
-                visit.add(word)
+                
                 for i in range(len(word)):
                     pattern = word[:i] + '*' + word[i + 1:]
                     for same_pattern_word in adj[pattern]:
-                        q.append(same_pattern_word)
+                        if same_pattern_word not in visit:
+                            visit.add(word)
+                            q.append(same_pattern_word)
 
 
             length += 1
