@@ -3,19 +3,24 @@ class Solution:
         """
         Do not return anything, modify matrix in-place instead.
         """
-        l = 0
-        r = (len(matrix) - 1)
+        rows = len(matrix)
+        cols = len(matrix[0])
+        left = 0
+        top = 0
+        right = cols - 1
+        bottom = rows - 1
 
-        while l < r:
-            top, bottom = l, r
-            for i in range(r-l):
-                topLeft = matrix[top][l + i]
+        while left < right:
+            for i in range(right - left):
+                temp = matrix[top][left + i]
 
-                matrix[top][l + i] = matrix[bottom - i][l]
-                matrix[bottom - i][l] = matrix[bottom][r - i]
-                matrix[bottom][r - i] = matrix[top + i][r]
-                matrix[top + i][r] = topLeft
-            l += 1
-            r -= 1
-      
-                        
+                matrix[top][left + i] = matrix[bottom - i][left]
+                matrix[bottom - i][left] = matrix[bottom][right - i]
+                matrix[bottom][right - i] = matrix[top + i][right]
+                matrix[top + i][right] = temp
+            top += 1
+            bottom -= 1
+            left += 1
+            right -= 1
+        return matrix
+        
