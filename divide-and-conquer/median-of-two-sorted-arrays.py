@@ -18,7 +18,7 @@ class Solution:
             ALeft = A[i] if i >= 0 else float('-inf')
             ARight = A[i + 1] if (i + 1) < len(A) else float('inf')
             BLeft = B[j] if j >= 0 else float('-inf')
-            BRight = B[j + 1] if (j + 1)  >= 0 else float('inf')
+            BRight = B[j + 1] if (j + 1) < len(B) else float('inf')
 
             if ALeft <= BRight and BLeft <= ARight:
                 if total % 2 == 0:
