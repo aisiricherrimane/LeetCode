@@ -20,7 +20,7 @@ class Solution:
             BLeft = B[j] if j >= 0 else float('-inf')
             BRight = B[j + 1] if (j + 1)  >= 0 else float('inf')
 
-            if ALeft <= BRight and BLeft <= BRight:
+            if ALeft <= BRight and BLeft <= ARight:
                 if total % 2 == 0:
                     return (min(ARight, BRight) + max(ALeft, BLeft)) / 2
                 else:
