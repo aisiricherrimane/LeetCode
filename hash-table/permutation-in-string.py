@@ -1,6 +1,6 @@
 class Solution:
     def checkInclusion(self, s1: str, s2: str) -> bool:
-        l_s1 = len(s1)
+       l_s1 = len(s1)
         l_s2 = len(s2)
         count_s1 = Counter(s1)
         window = Counter(s2[:l_s1])
