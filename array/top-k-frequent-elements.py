@@ -1,17 +1,28 @@
 class Solution:
     def topKFrequent(self, nums: List[int], k: int) -> List[int]:
-        count = Counter(nums)
+        k = len(nums) - k
 
-        freq = [[] for i in range(len(nums) + 1)]
+        def quickselect(l, r):
+            pivot = nums[r]
+            p = l
 
-        for n, f in count.items():
-            freq[f].append(n)
-
-        res = []
-        for i in range(len(freq) - 1, -1, -1):
-            for n in freq[i]:
-                    res.append(n)
-                    k -= 1
-                    if k == 0:
-                        return res
+            for i in range(l, r):
+                if nums[i] <= pivot:
+                    nums[i], nums[p] = nums[p], nums[i]
+                    p += 1
+            nums[p], nums[r] = nums[r], nums[p]
             
+            if len(set(nums[p:])) > k:
+                return quickselect(l, p - 1)
+                
+            elif len(set(nums[p:])) < k:
+                return quickselect(p + 1, r)
+            else:
+                return list(set(nums[p:]))
+        
+        return quickselect(0, len(nums) - 1)
+
+
+
+
+        
