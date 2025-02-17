@@ -6,7 +6,6 @@ class Solution:
         i = 0
 
         while i < len(s):
-            char = s[i]
 
             if s[i].isdigit():
                 curr = 0
@@ -28,9 +27,9 @@ class Solution:
                     res -= prev
                     res += prev // curr
                     prev = prev // curr
-            
-            elif char != ' ':
-                sign = char
+                curr = 0
+            elif s[i] != ' ':
+                sign = s[i]
             i += 1
         return res
 
