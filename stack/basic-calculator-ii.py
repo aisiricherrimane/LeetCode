@@ -1,5 +1,6 @@
 class Solution:
     def calculate(self, s: str) -> int:
+        
         res = curr = prev = 0
         sign = '+'
         i = 0
@@ -7,7 +8,7 @@ class Solution:
         while i < len(s):
             char = s[i]
 
-            if char.isdigit():
+            if s[i].isdigit():
                 curr = 0
                 while i < len(s) and s[i].isdigit():
                     curr = curr * 10 + int(s[i])
@@ -25,15 +26,13 @@ class Solution:
                     prev = prev * curr
                 elif sign == '/':
                     res -= prev
-                    res += int(prev / curr)
-                    prev = int(prev / curr)
-                curr = 0
+                    res += prev // curr
+                    prev = prev // curr
+            
             elif char != ' ':
                 sign = char
             i += 1
         return res
 
-            
-                
             
         
