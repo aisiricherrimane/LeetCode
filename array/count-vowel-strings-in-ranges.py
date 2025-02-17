@@ -1,14 +1,14 @@
 class Solution:
     def vowelStrings(self, words: List[str], queries: List[List[int]]) -> List[int]:
-        temp = [0] * (len(words) + 1)
+        vowel_count = [0] * (len(words) + 1 )
 
         for i, w in enumerate(words):
-            if w[0] in 'aeiou' and w[-1] in'aeiou':
-                temp[i + 1] = temp[i] + 1
+            if w[0] in 'aeiou' and w[-1] in 'aeiou':
+                vowel_count[i + 1] = 1 + vowel_count[i]
             else:
-                temp[i + 1] = temp[i]
-
+                vowel_count[i + 1] = vowel_count[i]
         res = []
         for l, r in queries:
-            res.append(temp[r + 1] - temp[l])
+            res.append(vowel_count[r + 1] - vowel_count[l])
         return res
+
