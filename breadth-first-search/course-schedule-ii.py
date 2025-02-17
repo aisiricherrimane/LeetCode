@@ -2,7 +2,7 @@ class Solution:
     def findOrder(self, numCourses: int, prerequisites: List[List[int]]) -> List[int]:
         adj = {i:[] for i in range(numCourses)}
 
-        for c, p in prerequisites:
+        for p, c in prerequisites:
             adj[c].append(p)
         
         res = []
