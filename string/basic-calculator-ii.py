@@ -25,8 +25,8 @@ class Solution:
                     prev = prev * curr
                 elif sign == '/':
                     res -= prev
-                    res += prev // curr
-                    prev = prev // curr
+                    res += int(prev / curr)
+                    prev = int(prev / curr)
                 curr = 0
             elif s[i] != ' ':
                 sign = s[i]
