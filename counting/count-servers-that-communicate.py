@@ -1,25 +1,28 @@
 class Solution:
     def countServers(self, grid: List[List[int]]) -> int:
-        comunicating_servers = 0
         last_server_in_row = [-1] * len(grid)
-        row = len(grid)
-        col = len(grid[0])
-        col_count = [0] * col
+        server_in_col = [0] * len(grid[0])
+        communicating_servers = 0
 
-        for r in range(row):
+        for r in range(len(grid)):
             good_servers = 0
-            for c in range(col):
+            for c in range(len(grid[0])):
                 if grid[r][c] == 1:
                     good_servers += 1
+                    server_in_col[c] += 1
                     last_server_in_row[r] = c
-                    col_count[c] += 1
             
             if good_servers > 1:
-                comunicating_servers += good_servers
+                communicating_servers += good_servers
                 last_server_in_row[r] = -1
         
-        for r in range(row):
-            if last_server_in_row[r]!= -1 and col_count[last_server_in_row[r]] > 1:
-                comunicating_servers += 1
-        return comunicating_servers
-            
+        for r in range(len(grid)):
+            if last_server_in_row[r] != -1 and server_in_col[last_server_in_row[r]] > 1:
+                communicating_servers += 1
+        
+        return communicating_servers
+
+
+
+
+        
