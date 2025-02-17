@@ -27,7 +27,7 @@ class Solution:
         for c in range(numCourses):
             if not dfs(c):
                 return []
-                
+
         
         return res
         
