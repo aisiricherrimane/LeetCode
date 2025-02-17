@@ -10,22 +10,20 @@ class Solution:
         cycle = set()
 
         def dfs(crs):
-            if crs in visited:
-                return True
             if crs in cycle:
                 return False
+            if crs in visited:
+                return True
             cycle.add(crs)
-
             for pre in adj[crs]:
-                if not dfs(pre): return False
+                if not dfs(pre):
+                    return False
+            res.append(crs)
             cycle.remove(crs)
             visited.add(crs)
-            res.append(crs)
-            return True
 
-
+        for c in range(numCourses):
+            dfs(c)
         
-        for i in range(numCourses):
-            if not dfs(i):
-                return []
         return res
+        
