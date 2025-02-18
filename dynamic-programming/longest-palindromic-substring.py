@@ -11,8 +11,10 @@ class Solution:
                     if (r - l + 1) > resl:
                         resl = (r - l + 1)
                         res = [l, r]
-                l -= 1
-                r += 1
+                    l -= 1
+                    r += 1
+                else:
+                    break
 
             l = i
             r = i + 1
@@ -22,8 +24,10 @@ class Solution:
                     if (r - l + 1) > resl:
                         resl = (r - l + 1)
                         res = [l, r]
-                l -= 1
-                r += 1
+                    l -= 1
+                    r += 1
+                else:
+                    break
                 
         l, r = res
         return s[l:r + 1]
