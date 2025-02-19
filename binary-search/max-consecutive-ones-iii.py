@@ -9,7 +9,7 @@ class Solution:
             while k < 0:
                 k += 1 - nums[l]
                 l += 1
-            if k == 0:
+            if k >= 0:
                 res = max(res, r - l + 1)
         return res
                 
